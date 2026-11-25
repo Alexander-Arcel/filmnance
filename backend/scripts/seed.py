@@ -59,9 +59,9 @@ def seed_database():
     models.Base.metadata.drop_all(bind=engine)
     models.Base.metadata.create_all(bind=engine)
 
-    # Build Gmail plus-alias from the configured mailbox.
+    # Build Gmail plus-alias: arcelalexander15+tag@gmail.com → lands in arcelalexander15@gmail.com
     # Tags use ONLY letters, numbers, underscores — NO @ or . in the tag part
-    real_email = os.getenv("REAL_EMAIL") or os.getenv("EMAIL_USER") or "demo@example.com"
+    real_email = os.getenv("REAL_EMAIL", "arcelalexander15@gmail.com")
     _rbase, _rdomain = real_email.split("@", 1)
 
     def alias(tag: str) -> str:
@@ -73,8 +73,9 @@ def seed_database():
             "name": "System Admin",
             "login": "admin@gmail.com",
             "verify":     alias("admin_recovery@gmail.com"),
-            "pass": "DemoAdmin@123",
+            "pass": "Admintest@123",
             "pin": "123456",
+            # → arcelalexander15+admin_pin_recovery@gmail.com
             "pin_verify": alias("admin_pin_recovery@gmail.com"),
             "is_admin": True,
             "trust": 100,
@@ -85,8 +86,9 @@ def seed_database():
         {
             "name": "Xel",
             "login": "xel@gmail.com",
+            # → arcelalexander15+xel_security@gmail.com
             "verify":     alias("xel_recovery@gmail.com"),
-            "pass": "DemoXel@123",
+            "pass": "Xeltest@123",
             "pin": "111111",
             "pin_verify": alias("xel_pin_recovery@gmail.com"),
             "is_admin": False,
@@ -95,8 +97,9 @@ def seed_database():
         {
             "name": "Kuuki",
             "login": "kuuki@gmail.com",
+            # → arcelalexander15+kuuki_security@gmail.com
             "verify":     alias("kuuki_recovery@gmail.com"),
-            "pass": "DemoKuuki@123",
+            "pass": "Kuukitest@123",
             "pin": "222222",
             "pin_verify": alias("kuuki_pin_recovery@gmail.com"),
             "is_admin": False,
@@ -105,8 +108,9 @@ def seed_database():
         {
             "name": "Kream",
             "login": "kream@gmail.com",
+            # → arcelalexander15+kream_security@gmail.com
             "verify":     alias("kream_recovery@gmail.com"),
-            "pass": "DemoKream@123",
+            "pass": "Kreamtest@123",
             "pin": "333333",
             "pin_verify": alias("kream_pin_recovery@gmail.com"),
             "is_admin": False,
