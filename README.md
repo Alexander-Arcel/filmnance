@@ -34,8 +34,17 @@ backend/
   api/v1/              Auth, loan, transaction, admin, upload endpoints
   services/            Trust, loan, payment, delay engine, audit logic
   alembic/             Database migrations
-  static/              HTML/CSS/JS for admin and user dashboards
+
+frontend/
+  index.html           Landing / auth entry page
+  admin/               Admin dashboard HTML, JS and CSS
+  user/                Producer dashboard HTML, JS and CSS
+  css/                 Auth page styles (login, signup, reset, ...)
+  js/auth/             Auth page scripts (login, signup, OTP, ...)
 ```
+
+The backend serves the frontend at `/static` and the pages at `/`, `/admin-dashboard`
+and `/user-dashboard`. Uploaded media is stored in `uploads/` at the project root.
 
 ## Prerequisites
 

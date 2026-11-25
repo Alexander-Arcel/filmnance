@@ -51,7 +51,7 @@ models.Base.metadata.create_all(bind=engine)
 
 # Ensure directories exist
 UPLOAD_PATHS = ["uploads/ids", "uploads/scripts",
-                "uploads/trailers", "backend/static"]
+                "uploads/trailers", "frontend"]
 for path in UPLOAD_PATHS:
     if not os.path.exists(path):
         os.makedirs(path, exist_ok=True)
@@ -97,24 +97,24 @@ def _on_shutdown():
 
 @app.get("/")
 async def read_index():
-    # Use the absolute path from the project root
-    return FileResponse("backend/static/index.html")
+    # Serve the landing page from the frontend folder
+    return FileResponse("frontend/index.html")
 
 # 2. Friendly Dashboard URLs (Optional, matches your JS redirects)
 
 
 @app.get("/admin-dashboard")
 async def get_admin_dashboard():
-    return FileResponse("backend/static/admin/admin_dashboard.html")
+    return FileResponse("frontend/admin/admin_dashboard.html")
 
 
 @app.get("/user-dashboard")
 async def read_user_dashboard():
-    return FileResponse("backend/static/user/user_dashboard.html")
+    return FileResponse("frontend/user/user_dashboard.html")
 
 # 3. Mount Static Files LAST
 # This handles all CSS/JS calls like <script src="/static/app.js">
-app.mount("/static", StaticFiles(directory="backend/static"), name="static")
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
 # 4. Mount Uploads
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
