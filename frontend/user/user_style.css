@@ -45,6 +45,7 @@ html[data-theme="light"] input,html[data-theme="light"] textarea,html[data-theme
 .sidebar-bottom{padding-top:1rem;border-top:1px solid var(--border)}
 .brand{display:flex;align-items:center;gap:0.65rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);margin-bottom:1.25rem}
 .brand-icon{width:34px;height:34px;background:var(--gold-dim);border:1px solid var(--gold-bdr);border-radius:var(--r);display:grid;place-items:center;color:var(--gold);font-size:0.85rem;flex-shrink:0}
+.brand-logo{width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block}
 .brand-name{font-family:var(--font-h);font-weight:800;font-size:0.78rem;letter-spacing:0.15em;color:var(--gold);display:block}
 .brand-role{font-size:0.58rem;letter-spacing:0.12em;color:var(--text-dim);font-family:var(--font-mono);display:block;margin-top:1px}
 .nav-section-label{font-size:0.58rem;letter-spacing:0.18em;color:var(--text-dim);font-family:var(--font-mono);padding:0.75rem 0.5rem 0.35rem;text-transform:uppercase;opacity:0.6}

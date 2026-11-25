@@ -81,6 +81,16 @@ app.include_router(admin.router, prefix="/api/v1")
 app.include_router(uploads_router, prefix="/api/v1")
 
 
+@app.get("/health", include_in_schema=False)
+async def health_check():
+    return {"status": "ok"}
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return FileResponse("frontend/assets/filmnance-logo.png")
+
+
 @app.on_event("startup")
 def _on_startup():
     start_scheduler()

@@ -146,6 +146,14 @@ body {
     line-height: 1;
 }
 
+.site-logo {
+    width: 34px;
+    height: 34px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
 .logo-text {
     font-family: var(--font-h);
     font-weight: 800;
