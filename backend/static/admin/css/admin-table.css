@@ -1,0 +1,42 @@
+/* ============================================
+   admin-table.css — Data tables
+   ============================================ */
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+}
+
+.data-table th {
+    text-align: left;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0 0.5rem 0.7rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.data-table td {
+    padding: 0.7rem 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.025);
+    vertical-align: middle;
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tr:hover td {
+    background: var(--bg-input);
+}
+
+.loading-row td {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    font-size: 0.73rem;
+}

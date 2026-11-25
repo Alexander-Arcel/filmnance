@@ -1,0 +1,176 @@
+/* =============================================
+   frozen.css — Account frozen warning view
+   ============================================= */
+
+#frozenView {
+    justify-content: center;
+    height: 100%;
+}
+
+/* ── Main frozen card ── */
+.frozen-card {
+    text-align: center;
+    padding: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ── Pulsing shield icon ── */
+.frozen-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(239, 68, 68, 0.1);
+    border: 2px solid rgba(239, 68, 68, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.4rem;
+    font-size: 1.8rem;
+    color: #ef4444;
+    animation: frozenPulse 2.5s infinite ease-in-out;
+}
+
+@keyframes frozenPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 0 12px rgba(239, 68, 68, 0.0);
+    }
+}
+
+/* ── Text ── */
+.frozen-title {
+    font-family: var(--font-h);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: #fff;
+}
+
+.frozen-subtitle {
+    font-size: 0.87rem;
+    color: var(--text-muted);
+    margin-bottom: 1.1rem;
+}
+
+.frozen-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin: 0.9rem 0;
+}
+
+.frozen-body {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.58);
+    line-height: 1.65;
+    margin-bottom: 0.9rem;
+    max-width: 340px;
+}
+
+/* ── Email badge ── */
+.frozen-email-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid var(--gold-border);
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.78rem;
+    color: var(--gold);
+    margin-bottom: 0.9rem;
+    font-weight: 500;
+    max-width: 100%;
+    word-break: break-all;
+}
+
+.frozen-instruction {
+    font-size: 0.81rem;
+    color: rgba(255, 255, 255, 0.52);
+    line-height: 1.6;
+    margin-bottom: 1.4rem;
+    max-width: 330px;
+}
+
+.frozen-instruction strong {
+    color: var(--green);
+}
+
+/* ── Resend section ── */
+.frozen-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.55rem;
+    width: 100%;
+}
+
+.resend-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0 1.8rem;
+    height: 44px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--r-md);
+    color: rgba(255, 255, 255, 0.6);
+    font-family: var(--font-h);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-transform: uppercase;
+    min-width: 180px;
+}
+
+.resend-btn:hover:not(:disabled) {
+    border-color: var(--gold-border);
+    color: var(--gold);
+    background: var(--gold-dim);
+}
+
+.resend-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+/* ── Resend attempt counter ── */
+.resend-attempts {
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.25);
+    text-align: center;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+/* ── Resend status text ── */
+.resend-status {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    min-height: 1.1em;
+    text-align: center;
+    transition: color 0.3s;
+    line-height: 1.4;
+}
+
+.resend-status.error {
+    color: var(--red);
+}
+
+.resend-status.success {
+    color: var(--green);
+}
+
+.resend-status.warning {
+    color: var(--orange);
+}

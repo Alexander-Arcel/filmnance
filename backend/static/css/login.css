@@ -1,0 +1,18 @@
+/* =============================================
+   login.css — Login view styles
+   ============================================= */
+
+/* Login view fills height nicely */
+#loginView {
+    justify-content: center;
+    height: 100%;
+}
+
+#loginView .form-header {
+    margin-bottom: 2rem;
+}
+
+/* Slightly more breathing room between fields */
+#loginView .input-group {
+    margin-bottom: 1.3rem;
+}

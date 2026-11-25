@@ -1,0 +1,61 @@
+/* ============================================
+   user-responsive.css — Responsive breakpoints
+   ============================================ */
+
+/* Desktop-first: sidebar is always visible at > 768px */
+
+@media (max-width: 768px) {
+    .user-sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    body.sidebar-open .user-sidebar {
+        transform: translateX(0);
+        z-index: 200;
+    }
+
+    .user-main {
+        margin-left: 0 !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+    }
+
+    body.sidebar-open .user-main {
+        margin-left: 0 !important;
+        width: 100vw !important;
+    }
+
+    .topbar {
+        padding-left: 1rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .purpose-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    /* Profile modal responsive */
+    #profileModal .modal-box {
+        max-width: 95vw !important;
+        margin: 1rem;
+    }
+
+    .profile-completion-bar {
+        margin: 0 1rem 1.5rem;
+        padding: 1rem;
+    }
+}

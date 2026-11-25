@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmnance — Command Center</title>
+    <link rel="stylesheet" href="/static/admin/admin_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-top">
+            <div class="brand">
+                <div class="brand-icon"><i class="fa-solid fa-clapperboard"></i></div>
+                <div class="brand-text">
+                    <span class="brand-name">FILMNANCE</span>
+                    <span class="brand-role">COMMAND CENTER</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section-label">OVERVIEW</div>
+                <a href="#" class="nav-item active" data-section="dash" onclick="showSection('dash',this)">
+                    <i class="fa-solid fa-chart-line"></i><span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-section="audit" onclick="showSection('audit',this)">
+                    <i class="fa-solid fa-scroll"></i><span>Audit Logs</span>
+                </a>
+
+                <div class="nav-section-label">OPERATIONS</div>
+                <a href="#" class="nav-item" data-section="verifications" onclick="showSection('verifications',this)">
+                    <i class="fa-solid fa-id-card"></i><span>Verification Request</span>
+                    <span class="nav-badge" id="verifyBadge">0</span>
+                </a>
+                <a href="#" class="nav-item" data-section="delays" onclick="showSection('delays',this)">
+                    <i class="fa-solid fa-hourglass-half"></i><span>Delay Requests</span>
+                    <span class="nav-badge" id="delayBadge">0</span>
+                </a>
+
+                <div class="nav-section-label">FINANCE</div>
+                <a href="#" class="nav-item" data-section="activeloans" onclick="showSection('activeloans',this)">
+                    <i class="fa-solid fa-clapperboard"></i><span>Active Loans</span>
+                    <span class="nav-badge" id="activeLoansBadge" style="display:none;background:var(--success)">0</span>
+                    <span class="nav-badge" id="loanRequestNavBadge" style="display:none;background:#eab308;color:#000">0</span>
+                </a>
+                <a href="#" class="nav-item" data-section="receipts" onclick="showSection('receipts',this)">
+                    <i class="fa-solid fa-money-bill-wave"></i><span>Repayment</span>
+                    <span class="nav-badge" id="receiptBadge" style="display:none">0</span>
+                </a>
+
+                <div class="nav-section-label">USERS</div>
+                <a href="#" class="nav-item" data-section="contact" onclick="showSection('contact',this)">
+                    <i class="fa-solid fa-envelope"></i><span>User Messages</span>
+                    <span class="nav-badge" id="contactBadge" style="display:none;background:#3b82f6;color:#fff">0</span>
+                </a>
+                <a href="#" class="nav-item" data-section="users" onclick="showSection('users',this)">
+                    <i class="fa-solid fa-users"></i><span>All Users</span>
+                </a>
+
+                <div class="nav-section-label" style="margin-top:1rem">SYSTEM</div>
+                <a href="#" class="nav-item" data-section="settings" onclick="showSection('settings',this)">
+                    <i class="fa-solid fa-gear"></i><span>Settings</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="sidebar-bottom">
+            <div class="admin-profile" id="adminProfile">
+                <div class="admin-avatar"><i class="fa-solid fa-user-shield"></i></div>
+                <div class="admin-info">
+                    <span class="admin-name" id="adminName">Admin</span>
+                    <span class="admin-label">System Administrator</span>
+                </div>
+            </div>
+            <button class="exit-btn" onclick="logout()">
+                <i class="fa-solid fa-right-from-bracket"></i> EXIT SYSTEM
+            </button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                <span class="page-subtitle" id="pageSubtitle">System overview and key metrics</span>
+            </div>
+            <div class="topbar-right">
+                <div class="topbar-time" id="topbarTime"></div>
+                <div style="position:relative;margin-right:0.25rem">
+                    <button id="adminNotifBell" onclick="toggleAdminNotifPanel()" style="background:none;border:1px solid var(--border);border-radius:8px;color:var(--text-dim);
+                               cursor:pointer;width:38px;height:38px;display:flex;align-items:center;justify-content:center;
+                               font-size:1rem;transition:all 0.2s;position:relative"
+                        onmouseover="this.style.borderColor='var(--gold-bdr)';this.style.color='var(--gold)'"
+                        onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-dim)'">
+                        <i class="fa-solid fa-bell"></i>
+                        <span id="adminNotifBadge" style="display:none;position:absolute;top:-5px;right:-5px;background:#ef4444;color:#fff;
+                                   font-size:0.58rem;font-weight:700;border-radius:50%;min-width:17px;height:17px;
+                                   align-items:center;justify-content:center;border:2px solid var(--bg-card)">
+                        </span>
+                    </button>
+                </div>
+                <button class="refresh-btn" onclick="refreshCurrent()"><i class="fa-solid fa-rotate-right"></i></button>
+            </div>
+        </header>
+
+        <!-- ═══════════ DASHBOARD SECTION ═══════════ -->
+        <section id="dashSection" class="section active">
+
+            <div class="kpi-grid">
+                <!-- 1. Active Users — GREEN -->
+                <div class="kpi-card kpi-green"
+                    onclick="showSection('users', document.querySelector('[data-section=users]'))"
+                    style="cursor:pointer">
+                    <div class="kpi-icon"><i class="fa-solid fa-users" style="color:#22c55e"></i></div>
+                    <div class="kpi-data">
+                        <p class="kpi-label">Active Users</p>
+                        <h2 class="kpi-value" id="statUsers">0</h2>
+                        <p class="kpi-sub" id="statGold">Excludes archived &amp; frozen</p>
+                    </div>
+                </div>
+                <!-- 2. Active Projects — GREEN -->
+                <div class="kpi-card kpi-green"
+                    onclick="showSection('activeloans', document.querySelector('[data-section=activeloans]'))"
+                    style="cursor:pointer">
+                    <div class="kpi-icon"><i class="fa-solid fa-clapperboard" style="color:#22c55e"></i></div>
+                    <div class="kpi-data">
+                        <p class="kpi-label">Active Loans</p>
+                        <h2 class="kpi-value" id="statActiveLoans">0</h2>
+                        <p class="kpi-sub" id="statActiveLoansAmount">Active Loans</p>
+                    </div>
+                </div>
+                <!-- 3. Capital Out — RED -->
+                <div class="kpi-card kpi-red"
+                    onclick="showSection('activeloans', document.querySelector('[data-section=activeloans]'))"
+                    style="cursor:pointer">
+                    <div class="kpi-icon"><i class="fa-solid fa-money-bill-transfer" style="color:#ef4444"></i></div>
+                    <div class="kpi-data">
+                        <p class="kpi-label">Capital Out</p>
+                        <h2 class="kpi-value" id="statCapitalOut">₱0.00</h2>
+                        <p class="kpi-sub">Active disbursements</p>
+                    </div>
+                </div>
+                <!-- 4. Pending Verification — YELLOW -->
+                <div class="kpi-card kpi-yellow"
+                    onclick="showSection('verifications', document.querySelector('[data-section=verifications]'))"
+                    style="cursor:pointer" id="pendingVerifyKpi">
+                    <div class="kpi-icon"><i class="fa-solid fa-id-card" style="color:#eab308"></i></div>
+                    <div class="kpi-data">
+                        <p class="kpi-label">Pending Verifications</p>
+                        <h2 class="kpi-value" id="statPendingVerify">0</h2>
+                        <p class="kpi-sub">ID reviews needed</p>
+                    </div>
+                </div>
+                <!-- 5. Pending Loans — YELLOW -->
+                <div class="kpi-card kpi-yellow"
+                    onclick="showSection('loans', document.querySelector('[data-section=loans]'))"
+                    style="cursor:pointer" id="pendingLoansKpi">
+                    <div class="kpi-icon"><i class="fa-solid fa-clock" style="color:#eab308"></i></div>
+                    <div class="kpi-data">
+                        <p class="kpi-label">Pending Loans</p>
+                        <h2 class="kpi-value" id="statPendingLoans">0</h2>
+                        <p class="kpi-sub">Awaiting decision</p>
+                    </div>
+                </div>
+                <!-- 6. Revenue — ORANGE -->
+                <div class="kpi-card kpi-orange"
+                    onclick="showSection('receipts', document.querySelector('[data-section=receipts]'))"
+                    style="cursor:pointer">
+                    <div class="kpi-icon"><i class="fa-solid fa-coins" style="color:#f97316"></i></div>
+                    <div class="kpi-data">
+                        <p class="kpi-label">Revenue</p>
+                        <h2 class="kpi-value" id="statRevenue">₱0.00</h2>
+                        <p class="kpi-sub">From repayments received</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dash-lower">
+                <div class="panel" id="recentLoansPanel">
+                    <div class="panel-header">
+                        <h3>Recent Loan Requests</h3>
+                        <button class="panel-link" onclick="showSection('loans', document.querySelector('[data-section=loans]'))">View All →</button>
+                    </div>
+                    <div class="panel-body" id="dashLoanList">
+                        <div class="empty-state"><i class="fa-solid fa-film"></i><p>No pending loans</p></div>
+                    </div>
+                </div>
+                <div class="panel" id="recentAuditPanel">
+                    <div class="panel-header">
+                        <h3>Recent Audit Activity</h3>
+                        <button class="panel-link" onclick="showSection('audit', document.querySelector('[data-section=audit]'))">View All →</button>
+                    </div>
+                    <div class="panel-body" id="dashAuditList">
+                        <div class="empty-state"><i class="fa-solid fa-scroll"></i><p>No logs yet</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ LOANS SECTION ═══════════ -->
+        <section id="loansSection" class="section">
+            <div class="section-toolbar">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" onclick="filterLoans('pending', this)"
+                        style="display:flex;align-items:center;gap:0.4rem;background:rgba(234,179,8,0.15);border-color:rgba(234,179,8,0.5);color:#eab308">
+                        <i class="fa-solid fa-film" style="color:#eab308;font-size:0.75rem"></i>
+                        <span style="color:#eab308">Pending</span>
+                    </button>
+                </div>
+            </div>
+            <div id="loansList" class="cards-grid"></div>
+        </section>
+
+        <!-- ═══════════ DELAYS SECTION ═══════════ -->
+        <section id="delaysSection" class="section">
+            <div class="section-toolbar">
+                <div class="filter-tabs">
+
+                    <button class="filter-tab active" id="delayTabRequest" style="display:flex;align-items:center;gap:0.4rem;background:rgba(234,179,8,0.15);border-color:rgba(234,179,8,0.5);color:#eab308"
+                        onclick="switchDelayTab('request',this)">
+                        <i class="fa-solid fa-hourglass-half" style="color:#eab308;font-size:0.75rem"></i>
+                        <span style="color:#eab308">Request Delay</span>
+                        <span class="nav-badge" id="requestDelayBadge" style="background:#eab308;color:#000">0</span>
+                    </button>
+                    <button class="filter-tab" id="delayTabMonthly" style="display:flex;align-items:center;gap:0.4rem"
+                        onclick="switchDelayTab('monthly',this)">
+                        <i class="fa-solid fa-calendar-check" style="font-size:0.75rem"></i>
+                        <span>Request Monthly Updates</span>
+                        <span class="nav-badge" id="graceUpdateBadge" style="background:#eab308;color:#000">0</span>
+                    </button>
+                    <button class="filter-tab" id="delayTabAll" style="display:flex;align-items:center;gap:0.4rem"
+                        onclick="switchDelayTab('all',this)">
+                        <i class="fa-solid fa-list-check" style="font-size:0.75rem"></i>
+                        <span>All</span>
+                    </button>
+                </div>
+            </div>
+            <div id="delaysList" style="display:none"></div>
+            <div id="requestDelayList" style="width:100%"></div>
+            <div id="graceUpdatesList" style="display:none;width:100%"></div>
+            <div id="allDelaysList" style="display:none;width:100%">
+                <div style="display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap">
+                    <button id="allSubDelay" onclick="switchAllSubTab('delay',this)"
+                        class="filter-tab" style="display:flex;align-items:center;gap:0.4rem;background:rgba(234,179,8,0.12);border-color:rgba(234,179,8,0.4);color:#eab308">
+                        <i class="fa-solid fa-hourglass-end" style="font-size:0.75rem;color:#eab308;margin-right:0.3rem"></i>
+                        <span style="color:#eab308">Delay Approved</span>
+                    </button>
+                    <button id="allSubMonthly" onclick="switchAllSubTab('monthly',this)"
+                        class="filter-tab" style="display:flex;align-items:center;gap:0.4rem">
+                        <i class="fa-solid fa-calendar-check" style="font-size:0.75rem;margin-right:0.3rem"></i>
+                        <span>Monthly Update Approved</span>
+                    </button>
+                </div>
+                <div id="allDelaysContent" style="width:100%"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════ VERIFICATIONS SECTION ═══════════ -->
+        <section id="verificationsSection" class="section">
+            <div class="section-toolbar">
+                <div class="filter-tabs">
+                    <button class="filter-tab active"
+                        style="display:flex;align-items:center;gap:0.4rem;pointer-events:none;background:rgba(234,179,8,0.15);border-color:rgba(234,179,8,0.5);color:#eab308">
+                        <i class="fa-solid fa-id-card" style="color:#eab308;font-size:0.75rem"></i>
+                        <span style="color:#eab308">Pending</span>
+                    </button>
+                </div>
+            </div>
+            <div id="verificationsList" class="cards-grid">
+                <div class="empty-state">
+                    <i class="fa-solid fa-id-card" style="color:var(--text-dim);font-size:2.5rem;margin-bottom:0.75rem;opacity:0.4"></i>
+                    <p style="color:var(--text-dim);font-size:0.88rem;font-weight:600">No pending verifications</p>
+                    <p style="font-size:0.74rem;color:var(--text-dim);margin-top:0.25rem;opacity:0.7">All identity documents have been reviewed</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ USERS SECTION ═══════════ -->
+        <section id="usersSection" class="section">
+            <div class="section-toolbar">
+                <div class="search-wrap">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="userSearch" placeholder="Search by name, email or ID..." oninput="searchUsers()">
+                </div>
+            </div>
+            <div id="usersList" class="cards-grid"></div>
+        </section>
+
+        <!-- ═══════════ ACTIVE LOANS SECTION ═══════════ -->
+        <section id="activeloansSection" class="section">
+            <div class="section-toolbar">
+                <div class="filter-tabs">
+                    <button class="filter-tab" id="activeLoanTabRequests"
+                        onclick="switchActiveLoanTab('requests',this)"
+                        style="display:flex;align-items:center;gap:0.4rem">
+                        <i class="fa-solid fa-film" style="font-size:0.75rem"></i>
+                        <span>Loan Requests</span>
+                        <span class="nav-badge" id="loanBadge" style="background:#eab308;color:#000">0</span>
+                    </button>
+                    <button class="filter-tab active" id="activeLoanTabActive"
+                        onclick="switchActiveLoanTab('active',this)"
+                        style="display:flex;align-items:center;gap:0.4rem;border-color:rgba(34,197,94,0.4);background:rgba(34,197,94,0.08);color:#22c55e">
+                        <i class="fa-solid fa-clapperboard" style="color:#22c55e;font-size:0.75rem"></i>
+                        <span style="color:#22c55e">Active Loans</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Loan Requests panel -->
+            <div id="loanRequestsPanel" style="display:none">
+                <div id="loanRequestsList" class="cards-grid"></div>
+            </div>
+            <!-- Active Loans panel -->
+            <div id="activeLoansPanel">
+                <!-- Summary bar -->
+                <div id="alSummaryGrid" style="display:inline-flex;align-items:center;gap:1.5rem;flex-wrap:wrap;padding:0.4rem 1rem;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:8px;margin-bottom:1.25rem;font-size:0.78rem;font-weight:700">
+                    <span style="color:#22c55e">Total Loans: <span id="alTotalProjects">0</span></span>
+                    <span style="color:#ef4444">Capital Out: <span id="alCapitalOut">₱0.00</span></span>
+                </div>
+                <div id="activeLoansList" class="cards-grid">
+                    <div class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i><p>Loading...</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ REPAYMENT RECEIPTS SECTION ═══════════ -->
+        <section id="receiptsSection" class="section">
+            <div class="section-toolbar" style="flex-direction:column;align-items:flex-start;gap:0.6rem">
+                <div class="filter-tabs">
+                    <button class="filter-tab" id="receiptTabPending"
+                        onclick="switchReceiptTab('pending',this)"
+                        style="display:flex;align-items:center;gap:0.4rem;background:rgba(249,115,22,0.1);border-color:rgba(249,115,22,0.4);color:#f97316">
+                        <i class="fa-solid fa-clock" style="color:#f97316;font-size:0.75rem"></i>
+                        <span style="color:#f97316">Pending Repayment</span>
+                        <span class="nav-badge" id="receiptBadge" style="display:none;background:#f97316">0</span>
+                    </button>
+                    <button class="filter-tab" id="receiptTabApproved"
+                        onclick="switchReceiptTab('approved',this)"
+                        style="display:flex;align-items:center;gap:0.4rem">
+                        <i class="fa-solid fa-circle-check" style="font-size:0.75rem"></i>
+                        <span>Approved Repayment</span>
+                    </button>
+                </div>
+                <!-- Totals bar only shown on Approved tab -->
+                <div id="receiptsTotalBar" style="display:none;gap:1.25rem;align-items:center;flex-wrap:wrap;padding:0.35rem 0.85rem;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:8px;font-size:0.78rem;font-weight:700;color:#22c55e">
+                    <span style="font-size:0.63rem;text-transform:uppercase;letter-spacing:0.08em;color:#22c55e;font-weight:800">TOTALS:</span>
+                    <span>Count: <span id="receiptTotalCount">0</span></span>
+                    <span>Received: <span id="receiptTotalAmount">&#8369;0.00</span></span>
+                    <span>Est. Revenue: <span id="receiptEstRevenue">&#8369;0.00</span></span>
+                    <span>Total Revenue: <span id="receiptTotalRevenue">&#8369;0.00</span></span>
+                </div>
+            </div>
+            <div id="repaymentReceiptsList" style="width:100%">
+                <div class="empty-state">
+                    <i class="fa-solid fa-receipt" style="color:var(--text-dim);font-size:2.5rem;margin-bottom:0.75rem;opacity:0.4"></i>
+                    <p style="color:var(--text-dim);font-size:0.88rem;font-weight:600">No repayment receipts</p>
+                    <p style="font-size:0.74rem;color:var(--text-dim);margin-top:0.25rem;opacity:0.7">Receipts submitted by producers will appear here</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ AUDIT SECTION ═══════════ -->
+        <section id="auditSection" class="section">
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>System Audit Log</h3>
+                    <span class="panel-hint" style="font-size:0.72rem;color:var(--text-dim)">All admin actions are recorded here</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap;padding:0.75rem 1.25rem;border-bottom:1px solid var(--border);background:var(--bg-input)">
+                    <div style="display:flex;gap:0.3rem;flex-wrap:wrap">
+                        <button class="audit-time-btn" onclick="setAuditFilter('all',this)" style="padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:0.72rem;font-weight:700;cursor:pointer">All</button>
+                        <button class="audit-time-btn" onclick="setAuditFilter('latest',this)" style="padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:0.72rem;font-weight:700;cursor:pointer">Latest</button>
+                        <button class="audit-time-btn" onclick="setAuditFilter('3d',this)" style="padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:0.72rem;font-weight:700;cursor:pointer">3D</button>
+                        <button class="audit-time-btn" onclick="setAuditFilter('7d',this)" style="padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:0.72rem;font-weight:700;cursor:pointer">7D</button>
+                        <button class="audit-time-btn" onclick="setAuditFilter('1m',this)" style="padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:0.72rem;font-weight:700;cursor:pointer">1M</button>
+                        <button class="audit-time-btn" onclick="setAuditFilter('3m',this)" style="padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:0.72rem;font-weight:700;cursor:pointer">3M</button>
+                        <button class="audit-time-btn" onclick="setAuditFilter('6m',this)" style="padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:0.72rem;font-weight:700;cursor:pointer">6M</button>
+                        <button class="audit-time-btn" onclick="setAuditFilter('12m',this)" style="padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:0.72rem;font-weight:700;cursor:pointer">12M</button>
+                    </div>
+                    <div style="width:1px;height:20px;background:var(--border);margin:0 0.2rem"></div>
+                    <div style="display:flex;gap:0.3rem;flex-wrap:wrap">
+                        <button class="audit-cat-btn" onclick="setAuditCategory('all',this)" style="padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:0.72rem;font-weight:700;cursor:pointer">All</button>
+                        <button class="audit-cat-btn" onclick="setAuditCategory('verification',this)" style="padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:0.72rem;font-weight:700;cursor:pointer">Verification</button>
+                        <button class="audit-cat-btn" onclick="setAuditCategory('loaning',this)" style="padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:0.72rem;font-weight:700;cursor:pointer">Loaning</button>
+                        <button class="audit-cat-btn" onclick="setAuditCategory('freezing',this)" style="padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:0.72rem;font-weight:700;cursor:pointer">Freezing</button>
+                        <button class="audit-cat-btn" onclick="setAuditCategory('archiving',this)" style="padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:0.72rem;font-weight:700;cursor:pointer">Archiving</button>
+                        <button class="audit-cat-btn" onclick="setAuditCategory('delay',this)" style="padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:0.72rem;font-weight:700;cursor:pointer">Delays</button>
+                        <button class="audit-cat-btn" onclick="setAuditCategory('message',this)" style="padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:0.72rem;font-weight:700;cursor:pointer">Messages</button>
+                        <button class="audit-cat-btn" onclick="setAuditCategory('repayment',this)" style="padding:0.3rem 0.7rem;border-radius:6px;border:1px solid var(--border);background:var(--bg-card);color:var(--text-dim);font-size:0.72rem;font-weight:700;cursor:pointer">Repayment</button>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding:0">
+                    <table class="data-table" style="width:100%;table-layout:fixed">
+                        <colgroup>
+                            <col style="width:160px">
+                            <col style="width:55px">
+                            <col style="width:120px">
+                            <col>
+                            <col style="width:100px">
+                            <col style="width:130px">
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th style="padding:0.6rem 0.75rem">Action</th>
+                                <th style="padding:0.6rem 0.5rem">ID</th>
+                                <th style="padding:0.6rem 0.5rem">User</th>
+                                <th style="padding:0.6rem 0.75rem">Details</th>
+                                <th style="padding:0.6rem 0.5rem">IP Address</th>
+                                <th style="padding:0.6rem 0.75rem">Timestamp</th>
+                            </tr>
+                        </thead>
+                        <tbody id="auditTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="settingsSection" class="section">
+            <div style="margin-bottom:1.25rem">
+                <button class="filter-tab active"
+                    style="display:flex;align-items:center;gap:0.4rem;background:rgba(212,175,55,0.12);border-color:rgba(212,175,55,0.45);color:var(--gold);pointer-events:none">
+                    <i class="fa-solid fa-gear" style="color:var(--gold);font-size:0.75rem"></i>
+                    <span style="color:var(--gold)">Admin Settings</span>
+                </button>
+            </div>
+
+            <div class="panel" style="margin-bottom:1rem;padding:1.1rem 1.25rem">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem">
+                    <div style="display:flex;align-items:center;gap:0.7rem">
+                        <div style="width:32px;height:32px;border-radius:9px;background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                            <i class="fa-solid fa-circle-half-stroke" style="color:var(--gold);font-size:0.82rem"></i>
+                        </div>
+                        <div>
+                            <div style="font-size:0.88rem;font-weight:700;color:var(--text)">Display Theme</div>
+                            <div style="font-size:0.72rem;color:var(--text-dim);margin-top:0.1rem">Switch between dark and light mode</div>
+                        </div>
+                    </div>
+                    <button id="adminThemeBtn" onclick="adminToggleTheme()"
+                        style="padding:0.45rem 1rem;border-radius:999px;border:1.5px solid var(--border);background:var(--bg-card);color:var(--text);font-size:0.78rem;font-weight:700;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:0.35rem;transition:all 0.2s;font-family:var(--font-h)"
+                        onmouseover="this.style.borderColor='var(--gold-bdr)';this.style.color='var(--gold)'"
+                        onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text)'">
+                        <i class="fa-solid fa-sun"></i> Light Mode
+                    </button>
+                </div>
+            </div>
+
+            <div class="panel" style="margin-bottom:1rem">
+                <div style="display:flex;align-items:center;gap:0.7rem;padding:1rem 1.25rem;border-bottom:1px solid var(--border)">
+                    <div style="width:32px;height:32px;border-radius:9px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                        <i class="fa-solid fa-box-archive" style="color:#f59e0b;font-size:0.82rem"></i>
+                    </div>
+                    <div>
+                        <div style="font-size:0.88rem;font-weight:700;color:var(--text)">Archived Accounts</div>
+                        <div style="font-size:0.72rem;color:var(--text-dim);margin-top:0.1rem">View and restore previously archived users</div>
+                    </div>
+                </div>
+                <div id="archivedUsersList" style="padding:0.85rem 1.25rem;min-height:40px">
+                    <p style="color:var(--text-dim);font-size:0.8rem">Loading...</p>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div style="display:flex;align-items:center;gap:0.7rem;padding:1rem 1.25rem;border-bottom:1px solid rgba(239,68,68,0.18)">
+                    <div style="width:32px;height:32px;border-radius:9px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                        <i class="fa-solid fa-trash-can" style="color:#ef4444;font-size:0.82rem"></i>
+                    </div>
+                    <div>
+                        <div style="font-size:0.88rem;font-weight:700;color:var(--text)">Rejected Loan Applications</div>
+                        <div style="font-size:0.72rem;color:var(--text-dim);margin-top:0.1rem">All rejected &amp; removed loan applications</div>
+                    </div>
+                </div>
+                <div id="removedLoansList" class="cards-grid" style="padding:0.85rem 1.25rem"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════ MESSAGES SECTION ═══════════ -->
+        <section id="contactSection" class="section">
+            <div class="section-toolbar">
+                <div class="filter-tabs">
+                    <button class="filter-tab active"
+                        style="display:flex;align-items:center;gap:0.4rem;pointer-events:none;background:rgba(125,211,252,0.1);border-color:rgba(125,211,252,0.4);color:#7dd3fc">
+                        <i class="fa-solid fa-envelope" style="font-size:0.75rem;color:#7dd3fc"></i>
+                        <span style="color:#7dd3fc">Messages</span>
+                    </button>
+                </div>
+            </div>
+            <div id="contactList">
+                <p style="color:var(--text-dim);padding:1rem">Loading messages...</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════ MODALS ═══════════ -->
+    <div class="modal-overlay" style="display:none" id="loanModal">
+        <div class="modal-box wide">
+            <div class="modal-header">
+                <h3 id="loanModalTitle">Loan Request</h3>
+                <button class="modal-close" onclick="closeModal('loanModal')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body" id="loanModalBody"></div>
+            <div class="modal-footer" id="loanModalFooter"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" style="display:none" id="userModal">
+        <div class="modal-box wide">
+            <div class="modal-header">
+                <h3 id="userModalTitle">Producer Profile</h3>
+                <button class="modal-close" onclick="closeModal('userModal')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body" id="userModalBody"></div>
+            <div class="modal-footer" id="userModalFooter"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" style="display:none" id="rejectModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3>Reject Loan Application</h3>
+                <button class="modal-close" onclick="closeModal('rejectModal')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <p class="form-hint">Provide a reason for rejection. This will be sent to the producer.</p>
+                <textarea id="rejectReason" class="modal-textarea" placeholder="e.g. Insufficient project details, unverified identity..."></textarea>
+                <p id="rejectMsg" class="form-msg"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="action-btn danger" onclick="confirmRejectLoan()"><i class="fa-solid fa-ban"></i> CONFIRM REJECT</button>
+                <button class="action-btn ghost" onclick="closeModal('rejectModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" style="display:none" id="verifyModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="verifyModalTitle">Review Identity</h3>
+                <button class="modal-close" onclick="closeModal('verifyModal')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body" id="verifyModalBody"></div>
+            <div class="modal-footer" id="verifyModalFooter"></div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <!-- Core — must load first -->
+    <script src="/static/admin/admin.js"></script>
+    <!-- Feature modules -->
+    <script src="/static/admin/admin_audit.js"></script>
+    <script src="/static/admin/admin_loans.js"></script>
+    <script src="/static/admin/admin_repayment.js"></script>
+    <script src="/static/admin/admin_delays.js"></script>
+    <script src="/static/admin/admin_users.js"></script>
+    <script src="/static/admin/admin_messages.js"></script>
+    <script src="/static/admin/admin_settings.js"></script>
+    <script src="/static/admin/admin_treasury.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+# Environment / secrets
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+
+# Uploaded media
+uploads/
+
+# Local artifacts
+backend.zip
+*.log
+.idea/
+.vscode/
+.DS_Store

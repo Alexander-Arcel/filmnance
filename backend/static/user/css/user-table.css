@@ -1,0 +1,106 @@
+/* ============================================
+   user-table.css — Data tables & status badges  [FIXED]
+   ============================================ */
+
+/* FIX: changed overflow:hidden → overflow:visible so action
+   dropdowns are never clipped by the table container.
+   overflow-x:auto is kept on a wrapper for horizontal scroll. */
+.table-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: visible;
+    /* FIX: was overflow:hidden — caused dropdown clipping */
+}
+
+/* Horizontal scroll wrapper — sits INSIDE .table-wrap */
+.table-scroll-inner {
+    overflow-x: auto;
+    border-radius: var(--r-lg);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+}
+
+.data-table thead tr {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.data-table th {
+    padding: 0.9rem 1rem;
+    text-align: left;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    border-bottom: 1px solid var(--border);
+}
+
+.data-table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    vertical-align: middle;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.data-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.empty-row {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 2.5rem !important;
+}
+
+/* ── Action cell — FIX: overflow visible so dropdown is never clipped ── */
+.action-cell {
+    position: relative;
+    overflow: visible !important;
+    /* FIX: critical — prevents dropdown clipping */
+    white-space: nowrap;
+}
+
+/* ── Status Badges ── */
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    border-radius: 2rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.badge-pending {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+}
+
+.badge-approved {
+    background: rgba(34, 197, 94, 0.12);
+    color: #22c55e;
+}
+
+.badge-disbursed {
+    background: rgba(59, 130, 246, 0.12);
+    color: #60a5fa;
+}
+
+.badge-completed {
+    background: rgba(107, 114, 128, 0.15);
+    color: #9ca3af;
+}
+
+.badge-overdue {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+}

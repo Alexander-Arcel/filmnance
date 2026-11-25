@@ -1,0 +1,110 @@
+/* ============================================
+   user-buttons.css — All button variants
+   ============================================ */
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.2rem;
+    background: var(--gold);
+    color: #000;
+    border: none;
+    border-radius: var(--r);
+    font-family: var(--font-h);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: filter 0.2s, transform 0.2s;
+}
+
+.btn-primary:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+}
+
+.btn-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.85rem 1.4rem;
+    background: var(--gold);
+    color: #000;
+    border: none;
+    border-radius: var(--r);
+    font-family: var(--font-h);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    transition: filter 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-gold:hover {
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.btn-outline {
+    padding: 0.85rem 1.4rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    border-radius: var(--r);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-outline:hover {
+    border-color: var(--gold-bdr);
+    color: var(--gold);
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    cursor: pointer;
+    padding: 0.4rem 0;
+    transition: color 0.2s;
+}
+
+.btn-text:hover {
+    color: var(--gold);
+}
+
+.btn-row {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.btn-row .btn-gold {
+    flex: 1;
+}
+
+.repay-btn {
+    padding: 0.4rem 0.9rem;
+    background: var(--gold-dim);
+    color: var(--gold);
+    border: 1px solid var(--gold-bdr);
+    border-radius: var(--r);
+    font-size: 0.7rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    transition: background 0.2s;
+}
+
+.repay-btn:hover {
+    background: rgba(212, 175, 55, 0.2);
+}

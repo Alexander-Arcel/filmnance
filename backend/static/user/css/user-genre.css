@@ -1,0 +1,29 @@
+/* ============================================================
+ * FILMNANCE — user-genre.css
+ * Genre checkbox dropdown styles (loan application form).
+ * ============================================================ */
+
+.genre-cb-label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.15s;
+    color: var(--text-dim);
+}
+
+.genre-cb-label:hover {
+    background: var(--bg-input);
+    color: var(--text);
+}
+
+.genre-cb-label input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    accent-color: var(--gold);
+    cursor: pointer;
+    flex-shrink: 0;
+}

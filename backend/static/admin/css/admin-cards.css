@@ -1,0 +1,338 @@
+/* ============================================
+   admin-cards.css — KPI cards, producer cards,
+   loan cards, badges, trust bar
+   ============================================ */
+
+/* KPI Grid */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.kpi-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 1.3rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    transition: border-color 0.25s, transform 0.25s;
+}
+
+.kpi-card:hover {
+    border-color: var(--gold-bdr);
+    transform: translateY(-2px);
+}
+
+.kpi-card.alert-card {
+    border-color: rgba(239, 68, 68, 0.2);
+}
+
+.kpi-card.alert-card:hover {
+    border-color: var(--error);
+}
+
+.kpi-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--bg-input);
+    border-radius: var(--r);
+    display: grid;
+    place-items: center;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+}
+
+.kpi-icon.gold {
+    background: var(--gold-dim);
+    color: var(--gold);
+    border-color: var(--gold-bdr);
+}
+
+.kpi-icon.blue {
+    background: rgba(96, 165, 250, 0.1);
+    color: var(--blue);
+    border-color: rgba(96, 165, 250, 0.2);
+}
+
+.kpi-icon.green {
+    background: rgba(34, 197, 94, 0.1);
+    color: var(--success);
+    border-color: rgba(34, 197, 94, 0.2);
+}
+
+.kpi-icon.red {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error);
+    border-color: rgba(239, 68, 68, 0.2);
+}
+
+.kpi-icon.orange {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warn);
+    border-color: rgba(245, 158, 11, 0.2);
+}
+
+.kpi-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    margin-bottom: 0.3rem;
+}
+
+.kpi-value {
+    font-family: var(--font-h);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+
+.kpi-value.gold {
+    color: var(--gold);
+}
+
+.kpi-value.blue {
+    color: var(--blue);
+}
+
+.kpi-value.green {
+    color: var(--success);
+}
+
+.kpi-value.red {
+    color: var(--error);
+}
+
+.kpi-value.orange {
+    color: var(--warn);
+}
+
+.kpi-sub {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+}
+
+/* Cards grid */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+    align-items: start;
+}
+
+.producer-card,
+.loan-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 1.2rem;
+    transition: border-color 0.25s, transform 0.25s;
+}
+
+.producer-card:hover,
+.loan-card:hover {
+    border-color: var(--gold-bdr);
+    transform: translateY(-2px);
+}
+
+.loan-card.pending {
+    border-left: 3px solid var(--warn);
+}
+
+.loan-card.disbursed {
+    border-left: 3px solid var(--success);
+}
+
+.loan-card.rejected {
+    border-left: 3px solid var(--error);
+    opacity: 0.7;
+}
+
+.card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 0.65rem;
+}
+
+.card-title {
+    font-family: var(--font-h);
+    font-weight: 700;
+    font-size: 0.88rem;
+    margin-bottom: 0.15rem;
+}
+
+.card-meta {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+}
+
+.card-amount {
+    font-family: var(--font-h);
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--gold);
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin: 0.65rem 0;
+}
+
+.card-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.73rem;
+}
+
+.card-row-label {
+    color: var(--text-dim);
+}
+
+.card-row-val {
+    font-family: var(--font-mono);
+    font-weight: 500;
+}
+
+.card-actions {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.9rem;
+    flex-wrap: wrap;
+}
+
+/* Producer card */
+.producer-header {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 0.65rem;
+}
+
+.producer-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    display: grid;
+    place-items: center;
+    font-size: 0.8rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    font-family: var(--font-h);
+    font-weight: 700;
+}
+
+.producer-name {
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin-bottom: 0.1rem;
+}
+
+.producer-email {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+}
+
+/* Trust bar */
+.trust-bar-wrap {
+    margin: 0.65rem 0;
+}
+
+.trust-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    margin-bottom: 0.3rem;
+}
+
+.trust-bar-track {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.trust-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--success));
+    transition: width 0.6s ease;
+}
+
+/* Badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.18rem 0.55rem;
+    border-radius: 20px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.badge-pending {
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--warn);
+}
+
+.badge-active {
+    background: rgba(34, 197, 94, 0.12);
+    color: var(--success);
+}
+
+.badge-disbursed,
+.badge-approved {
+    background: rgba(96, 165, 250, 0.12);
+    color: var(--blue);
+}
+
+.badge-rejected {
+    background: rgba(239, 68, 68, 0.12);
+    color: var(--error);
+}
+
+.badge-frozen,
+.badge-freeze {
+    background: rgba(96, 165, 250, 0.12);
+    color: var(--blue);
+}
+
+.badge-archived {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-dim);
+}
+
+.badge-verified {
+    background: rgba(34, 197, 94, 0.12);
+    color: var(--success);
+}
+
+.badge-unverified {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-dim);
+}
+
+.badge-gold {
+    background: var(--gold-dim);
+    color: var(--gold);
+}

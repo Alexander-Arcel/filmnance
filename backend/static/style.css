@@ -1,0 +1,19 @@
+/* =============================================
+   style.css — Master stylesheet
+   Imports all component CSS files in order
+   ============================================= */
+
+@import url('/static/css/base.css');
+@import url('/static/css/login.css');
+@import url('/static/css/signup.css');
+@import url('/static/css/setup-security.css');
+@import url('/static/css/forgot-password.css');
+@import url('/static/css/reset-password.css');
+@import url('/static/css/frozen.css');
+/* ──────────────────────────────────────────────
+   View switcher — controls which auth panel is
+   visible. Extracted from index.html inline style.
+   ────────────────────────────────────────────── */
+.view { display: none; }
+.view.active { display: block; }
+.input-wrapper { position: relative; }

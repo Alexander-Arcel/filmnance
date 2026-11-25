@@ -1,0 +1,13 @@
+/* =============================================
+   admin_style.css — Master stylesheet
+   Imports all admin CSS modules in order
+   ============================================= */
+
+@import url('/static/admin/css/admin-variables.css');
+@import url('/static/admin/css/admin-sidebar.css');
+@import url('/static/admin/css/admin-layout.css');
+@import url('/static/admin/css/admin-cards.css');
+@import url('/static/admin/css/admin-buttons.css');
+@import url('/static/admin/css/admin-table.css');
+@import url('/static/admin/css/admin-modals.css');
+@import url('/static/admin/css/admin-treasury.css');@import url('/static/admin/css/admin-overrides.css');

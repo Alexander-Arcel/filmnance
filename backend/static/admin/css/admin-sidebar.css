@@ -1,0 +1,189 @@
+/* ============================================
+   admin-sidebar.css — Left navigation sidebar
+   ============================================ */
+
+.sidebar {
+    width: var(--sidebar-w);
+    background: var(--bg-drawer);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    z-index: 100;
+    overflow-y: auto;
+}
+
+.sidebar-top {
+    flex: 1;
+}
+
+.sidebar-bottom {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.25rem;
+}
+
+.brand-icon {
+    width: 34px;
+    height: 34px;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-bdr);
+    border-radius: var(--r);
+    display: grid;
+    place-items: center;
+    color: var(--gold);
+    font-size: 0.85rem;
+    flex-shrink: 0;
+}
+
+.brand-name {
+    font-family: var(--font-h);
+    font-weight: 800;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    display: block;
+}
+
+.brand-role {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    display: block;
+    margin-top: 1px;
+}
+
+.nav-section-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.18em;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    padding: 0.75rem 0.5rem 0.35rem;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.55rem 0.7rem;
+    border-radius: var(--r);
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    margin-bottom: 2px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.nav-item:hover {
+    background: var(--bg-input);
+    color: var(--text);
+}
+
+.nav-item.active {
+    background: var(--gold-dim);
+    color: var(--gold);
+    border-color: var(--gold-bdr);
+}
+
+.nav-item i {
+    width: 14px;
+    text-align: center;
+    font-size: 0.78rem;
+    flex-shrink: 0;
+}
+
+.nav-item>span:first-of-type {
+    flex: 1;
+}
+
+.nav-badge {
+    background: var(--error);
+    color: #fff;
+    font-size: 0.58rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    min-width: 17px;
+    height: 17px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+}
+
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.5rem;
+}
+
+.admin-avatar {
+    width: 30px;
+    height: 30px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    flex-shrink: 0;
+}
+
+.admin-name {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text);
+    display: block;
+}
+
+.admin-label {
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    display: block;
+}
+
+.exit-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: var(--error);
+    padding: 0.6rem;
+    border-radius: var(--r);
+    font-family: var(--font-h);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.exit-btn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: var(--error);
+}

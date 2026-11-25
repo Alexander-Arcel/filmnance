@@ -1,0 +1,147 @@
+/* ============================================
+   admin-variables.css — Design tokens
+   IDENTICAL to user-variables.css by design
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+    --bg: #060606;
+    --bg-card: #0e0e0e;
+    --bg-drawer: #0a0a0a;
+    --bg-input: rgba(255, 255, 255, 0.04);
+    --gold: #d4af37;
+    --gold-dim: rgba(212, 175, 55, 0.10);
+    --gold-bdr: rgba(212, 175, 55, 0.28);
+    --text: #ffffff;
+    --text-dim: #6b7280;
+    --border: rgba(255, 255, 255, 0.07);
+    --success: #22c55e;
+    --error: #ef4444;
+    --warn: #f59e0b;
+    --blue: #60a5fa;
+    --shadow: rgba(0, 0, 0, 0.6);
+    --font-h: 'Syne', sans-serif;
+    --font-b: 'DM Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --r: 0.75rem;
+    --r-lg: 1rem;
+    --sidebar-w: 240px;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-b);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+/* ── LIGHT THEME ── */
+[data-theme="light"] {
+    --bg: #f4f4f5;
+    --bg-card: #ffffff;
+    --bg-drawer: #e8e8ea;
+    --bg-input: rgba(0, 0, 0, 0.04);
+    --gold: #b8860b;
+    --gold-dim: rgba(184, 134, 11, 0.10);
+    --gold-bdr: rgba(184, 134, 11, 0.30);
+    --text: #0f0f0f;
+    --text-dim: #6b7280;
+    --border: rgba(0, 0, 0, 0.10);
+    --success: #16a34a;
+    --error: #dc2626;
+    --warn: #d97706;
+    --blue: #2563eb;
+    --shadow: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] body {
+    background: var(--bg);
+    color: var(--text);
+}
+
+[data-theme="light"] .sidebar {
+    background: #1a1a2e;
+    border-right-color: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .topbar {
+    background: rgba(244, 244, 245, 0.95);
+    border-bottom: 1px solid var(--border);
+}
+
+/* ── Apply light theme to body as well (set by JS on both html and body) ── */
+body[data-theme="light"] {
+    background: #f4f4f5;
+    color: #0f0f0f;
+}
+
+/* ── Comprehensive light theme overrides ── */
+html[data-theme="light"],
+html[data-theme="light"] body {
+    background: #f4f4f5 !important;
+    color: #0f0f0f !important;
+}
+
+html[data-theme="light"] .sidebar {
+    background: #1c1c2e !important;
+}
+
+html[data-theme="light"] .main-content {
+    background: #f4f4f5 !important;
+}
+
+html[data-theme="light"] .panel,
+html[data-theme="light"] .modal-box,
+html[data-theme="light"] .loan-card,
+html[data-theme="light"] .notif-panel {
+    background: #ffffff !important;
+    border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+html[data-theme="light"] .topbar {
+    background: rgba(244, 244, 245, 0.95) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+html[data-theme="light"] input,
+html[data-theme="light"] textarea,
+html[data-theme="light"] select {
+    background: rgba(0, 0, 0, 0.04) !important;
+    color: #0f0f0f !important;
+    border-color: rgba(0, 0, 0, 0.12) !important;
+}
+
+html[data-theme="light"] table thead tr {
+    border-bottom-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+html[data-theme="light"] .detail-label {
+    color: #6b7280 !important;
+}
+
+html[data-theme="light"] .detail-value {
+    color: #0f0f0f !important;
+}

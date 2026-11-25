@@ -1,0 +1,1861 @@
+/* ============================================================
+ * FILMNANCE — user-components.css
+ * All inline styles from user_dashboard.html extracted into
+ * reusable CSS classes. Covers: sidebar status badge,
+ * settings btn, notif panel, overview cards, profile section,
+ * modals content, loan modal, repay modal, resources.
+ * ============================================================ */
+
+/* ── Sidebar status badge ── */
+.sidebar-status-badge {
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 0.15rem 0.45rem;
+    border-radius: 0.75rem;
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* ── Sidebar settings button row ── */
+.sidebar-action-row {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-settings-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.55rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    font-family: var(--font-b);
+}
+
+.sidebar-settings-btn:hover {
+    border-color: var(--gold-bdr);
+    color: var(--gold);
+}
+
+/* ── Notification panel ── */
+.notif-panel {
+    display: none;
+    position: fixed;
+    top: 58px;
+    right: 1rem;
+    z-index: 4000;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    width: 340px;
+    max-height: 480px;
+    overflow-y: auto;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+.notif-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.notif-panel-title {
+    font-family: var(--font-h);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.notif-mark-all-btn {
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 0.72rem;
+    cursor: pointer;
+    font-family: var(--font-b);
+}
+
+.notif-list {
+    padding: 0.5rem;
+}
+
+/* ── Topbar notification badge wrapper ── */
+.topbar-bell-wrap {
+    position: relative;
+}
+
+.notif-badge {
+    display: none;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ef4444;
+    color: #fff;
+    font-size: 0.58rem;
+    font-weight: 700;
+    border-radius: 50%;
+    min-width: 17px;
+    height: 17px;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--bg-card);
+}
+
+/* ── Overview stat card clickable ── */
+.stat-card-clickable {
+    cursor: pointer;
+}
+
+/* ── Overview two-column grid ── */
+.overview-preview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+/* ── Preview card (Active Projects / Recent Transactions) ── */
+.preview-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 1.25rem;
+}
+
+.preview-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.85rem;
+}
+
+.preview-card-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.preview-card-title-icon {
+    color: var(--gold);
+    margin-right: 0.4rem;
+}
+
+/* ── Next Repayment Due card ── */
+.next-due-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+}
+
+.next-due-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.85rem;
+}
+
+.next-due-card-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+/* ── Profile section ── */
+.prof-info-grid {
+    padding: 1.25rem 2rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem 2rem;
+}
+
+.prof-info-grid-full {
+    grid-column: 1 / -1;
+}
+
+.prof-past-section {
+    border-top: 1px solid var(--border);
+    padding-top: 0.9rem;
+    margin-top: 0.1rem;
+}
+
+.prof-info-label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--text-dim);
+    margin-bottom: 0.2rem;
+    font-weight: 600;
+}
+
+.prof-info-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+}
+
+.prof-info-value-sm {
+    font-size: 0.85rem;
+    color: var(--text);
+    font-weight: 500;
+    line-height: 1.55;
+}
+
+.prof-info-value-bio {
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Bio scrollable — fills its grid cell without dead space below */
+.prof-bio-scroll {
+    max-height: 6.4rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-break: break-word;
+    padding-right: 0.2rem;
+}
+
+.prof-bio-scroll::-webkit-scrollbar {
+    width: 3px;
+}
+
+.prof-bio-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+/* Status badge shown alongside +pts badge */
+.pse-status-badge {
+    display: none;
+    padding: 0.18rem 0.55rem;
+    border-radius: 999px;
+    font-size: 0.62rem;
+    font-weight: 700;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+}
+
+/* Past project hover link */
+.prof-past-hover-link {
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: text-decoration 0.15s;
+}
+
+.prof-past-hover-link:hover {
+    text-decoration: underline;
+}
+
+.prof-info-value-gold {
+    font-size: 0.85rem;
+    color: var(--gold);
+    font-weight: 700;
+}
+
+/* ── Status modifier classes ── */
+/* Pending — yellow */
+.prof-status-pending {
+    color: #f59e0b !important;
+}
+
+/* Rejected — red */
+.prof-status-rejected {
+    color: #ef4444 !important;
+}
+
+/* Empty / not set */
+.prof-status-empty {
+    color: var(--text-dim) !important;
+}
+
+/* EC completion label colors */
+.prof-status-approved-label {
+    color: #22c55e !important;
+}
+
+.prof-status-partial-label {
+    color: #f59e0b !important;
+}
+
+/* KYC status classes */
+.prof-kyc-verified {
+    color: #22c55e !important;
+    font-weight: 700;
+}
+
+.prof-kyc-pending {
+    color: #f59e0b !important;
+}
+
+.prof-kyc-rejected {
+    color: #ef4444 !important;
+}
+
+.prof-kyc-empty {
+    color: var(--text-dim) !important;
+}
+
+/* Past project links */
+.prof-past-link {
+    display: block;
+    color: var(--gold);
+    font-size: 0.83rem;
+    text-decoration: none;
+    line-height: 1.6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.prof-past-link:hover {
+    text-decoration: underline;
+}
+
+/* ── Profile header info (right of avatar) ── */
+.prof-header-info {
+    flex: 1;
+}
+
+.prof-name-display {
+    font-weight: 800;
+    font-size: 1.3rem;
+}
+
+.prof-email-display {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-top: 0.15rem;
+}
+
+.prof-badges-row {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.prof-tier-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.2rem 0.7rem;
+    background: var(--gold-dim);
+    border-radius: 1rem;
+    color: var(--gold);
+}
+
+.prof-ver-badge,
+.pending-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.2rem 0.7rem;
+    border-radius: 1rem;
+    color: #f59e0b;
+}
+
+.prof-ver-badge {
+    background: rgba(34, 197, 94, 0.12);
+    color: #22c55e;
+}
+
+.pending-badge {
+    background: rgba(245, 158, 11, 0.15);
+}
+
+.prof-status-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.2rem 0.7rem;
+    background: rgba(34, 197, 94, 0.12);
+    border-radius: 1rem;
+    color: #22c55e;
+}
+
+/* ── Profile trust bar mini ── */
+.prof-trust-bar-wrap {
+    margin-top: 0.75rem;
+    max-width: 260px;
+}
+
+.prof-trust-bar-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    margin-bottom: 0.3rem;
+}
+
+.prof-trust-bar-label-text {
+    color: var(--text-dim);
+}
+
+.prof-trust-score-label {
+    font-weight: 700;
+    color: var(--gold);
+}
+
+.prof-trust-bar-track {
+    background: var(--bg-input);
+    border-radius: 4px;
+    height: 6px;
+    overflow: hidden;
+}
+
+.prof-trust-bar-fill {
+    height: 100%;
+    background: var(--gold);
+    border-radius: 4px;
+    width: 0%;
+    transition: width 0.5s;
+}
+
+/* ── Profile edit-btn flex-shrink ── */
+.prof-edit-btn-wrap {
+    flex-shrink: 0;
+}
+
+/* ── PIN gate ── */
+.pin-gate-wrap {
+    padding: 2rem;
+    text-align: center;
+}
+
+.pin-gate-lock-icon {
+    font-size: 2rem;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+}
+
+.pin-gate-prompt {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+}
+
+.pin-gate-input-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.pin-gate-input {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    color: var(--text);
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    text-align: center;
+    width: 140px;
+    letter-spacing: 0.2em;
+}
+
+.pin-gate-error {
+    color: var(--error);
+    font-size: 0.78rem;
+    margin-top: 0.5rem;
+    min-height: 1rem;
+}
+
+/* ── PSE accordion icons ── */
+.pse-chevron {
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    transition: transform 0.2s;
+}
+
+/* ── Profile section descriptions ── */
+.pse-desc {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-bottom: 0.85rem;
+}
+
+/* ── Past project URL + upload row ── */
+.past-project-url-row {
+    display: flex;
+    gap: 0.4rem;
+    align-items: flex-end;
+}
+
+.past-project-url-row input {
+    flex: 1;
+}
+
+.upload-icon-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.upload-icon-label:hover {
+    border-color: var(--gold-bdr);
+}
+
+.upload-status-row {
+    margin-top: 0.3rem;
+    font-size: 0.72rem;
+}
+
+.upload-filename-gold {
+    color: var(--gold);
+}
+
+/* ── File upload dashed label ── */
+.file-upload-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem;
+    background: var(--bg-input);
+    border: 1px dashed var(--border);
+    border-radius: var(--r);
+    cursor: pointer;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    transition: border-color 0.2s;
+}
+
+.file-upload-label:hover {
+    border-color: var(--gold-bdr);
+}
+
+.file-upload-label-icon {
+    color: var(--gold);
+}
+
+/* ── KYC badge variant ── */
+.pse-badge-kyc {
+    background: rgba(212, 175, 55, 0.2);
+    font-size: 0.7rem;
+}
+
+/* ── Modal msg spacing ── */
+.modal-msg-sm {
+    margin-top: 0.4rem;
+    min-height: 1rem;
+}
+
+/* ── My Projects filter row ── */
+.genre-filter-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.genre-filter-wrap {
+    position: relative;
+}
+
+.genre-filter-select {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    color: var(--text);
+    padding: 0.55rem 2rem 0.55rem 0.85rem;
+    font-size: 0.82rem;
+    cursor: pointer;
+    appearance: none;
+    min-width: 180px;
+    font-family: var(--font-b);
+}
+
+.genre-filter-chevron {
+    position: absolute;
+    right: 0.65rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    pointer-events: none;
+}
+
+.genre-project-count {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+}
+
+/* ── Schedule loan select ── */
+.schedule-select {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    color: var(--text);
+    padding: 0.55rem 0.8rem;
+    width: 100%;
+    max-width: 420px;
+    font-size: 0.85rem;
+    font-family: var(--font-b);
+    margin-bottom: 1rem;
+}
+
+/* ── Resources grid stat margin ── */
+.resources-stat-grid {
+    margin-bottom: 1.5rem;
+}
+
+/* ── Resources card ── */
+.resources-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.resources-card-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 0.85rem;
+}
+
+/* ── Settings modal content ── */
+.settings-body {
+    padding: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.settings-section-label {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+}
+
+/* Settings row card base */
+.settings-row-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text);
+    text-align: left;
+    font-family: var(--font-b);
+}
+
+.settings-row-card:hover {
+    border-color: var(--gold-bdr);
+    background: var(--gold-dim);
+}
+
+.settings-icon-box {
+    width: 44px;
+    height: 44px;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-bdr);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.settings-icon-box-plain {
+    width: 44px;
+    height: 44px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.settings-icon-lg {
+    font-size: 1.3rem;
+    color: var(--gold);
+}
+
+.settings-icon-lg-dim {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+}
+
+.settings-row-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.settings-row-sub {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-top: 0.15rem;
+}
+
+.settings-chevron {
+    margin-left: auto;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+}
+
+/* Appearance row (not a button) */
+.settings-appearance-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.settings-appearance-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.settings-theme-toggle-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.settings-theme-label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+}
+
+.theme-toggle-track {
+    width: 44px;
+    height: 24px;
+    border-radius: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s;
+}
+
+.theme-toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--text-dim);
+    transition: transform 0.2s, background 0.2s;
+}
+
+/* Contact admin card */
+.contact-admin-card {
+    padding: 1rem 1.25rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.contact-admin-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+}
+
+.contact-admin-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+}
+
+.contact-send-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.85rem;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-bdr);
+    border-radius: 8px;
+    color: var(--gold);
+    font-size: 0.78rem;
+    font-weight: 600;
+    transition: border-color 0.2s;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-b);
+}
+
+.contact-send-btn:hover {
+    border-color: var(--gold);
+}
+
+.contact-phone-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.85rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+}
+
+.contact-hours {
+    margin-top: 0.6rem;
+    font-size: 0.7rem;
+    color: var(--text-dim);
+}
+
+/* ── Security modal tabs ── */
+.sec-tabs-row {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+/* ── Security modal header for back button alignment ── */
+.sec-modal-header {
+    justify-content: flex-start !important;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.sec-modal-header .sec-back-btn,
+.sec-modal-header .modal-back-btn {
+    order: -1;
+    margin-right: auto !important;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    padding: 0.5rem 1rem;
+    border-radius: var(--r);
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.sec-modal-header .sec-back-btn:hover,
+.sec-modal-header .modal-back-btn:hover {
+    background: var(--gold-dim);
+    border-color: var(--gold-bdr);
+    color: var(--gold);
+}
+
+/* ── Contact admin back button ── */
+.contact-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 0.75rem;
+    font-family: var(--font-b);
+}
+
+.contact-back-btn:hover {
+    background: var(--gold-dim);
+    border-color: var(--gold-bdr);
+    color: var(--gold);
+}
+
+.sec-tab {
+    flex: 1;
+    padding: 0.6rem;
+    border-radius: var(--r);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--bg-input);
+    color: var(--text-dim);
+    font-family: var(--font-b);
+    transition: all 0.2s;
+}
+
+.sec-tab.active {
+    border-color: var(--gold-bdr);
+    background: var(--gold-dim);
+    color: var(--gold);
+}
+
+/* Security step descriptions */
+.sec-step-desc {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+}
+
+/* OTP input */
+.otp-input {
+    text-align: center;
+    letter-spacing: 0.2em;
+    font-size: 1.1rem;
+}
+
+/* Back/step-over button */
+.sec-back-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    cursor: pointer;
+    font-family: var(--font-b);
+}
+
+/* Password policy indicator */
+.pw-policy-indicator {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.2rem;
+    margin-bottom: 0.6rem;
+    padding: 0.5rem;
+    background: var(--bg-input);
+    border-radius: var(--r);
+}
+
+/* PIN input centered */
+.pin-centered-input {
+    text-align: center;
+    letter-spacing: 0.2em;
+}
+
+.modal-msg-spaced {
+    margin-top: 0.5rem;
+    min-height: 1rem;
+}
+
+/* ── Request payment modal tabs ── */
+.rp-tabs-row {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+.rp-tab {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: var(--r);
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: var(--font-b);
+    transition: all 0.2s;
+}
+
+.rp-tab-active {
+    border: 1px solid var(--gold-bdr);
+    background: var(--gold-dim);
+    color: var(--gold);
+}
+
+.rp-tab-inactive {
+    border: 1px solid var(--border);
+    background: var(--bg-input);
+    color: var(--text-dim);
+}
+
+/* Select inside modal */
+.modal-select {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    color: var(--text);
+    padding: 0.65rem;
+    width: 100%;
+    font-family: var(--font-b);
+    font-size: 0.85rem;
+}
+
+.fld-mb {
+    margin-bottom: 0.75rem;
+}
+
+/* Monthly photo preview */
+.monthly-photo-preview {
+    margin-top: 0.5rem;
+}
+
+/* ── Request payment submit area ── */
+.rp-msg {
+    margin-top: 0.75rem;
+    min-height: 1rem;
+}
+
+.rp-submit-btn-wrap {
+    margin-top: 0.5rem;
+}
+
+/* ── Loan modal ── */
+.loan-step-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 0 1.25rem;
+}
+
+.loan-step-dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 800;
+    flex-shrink: 0;
+}
+
+.loan-step-dot-active {
+    background: var(--gold);
+    color: #000;
+}
+
+.loan-step-dot-inactive {
+    background: var(--bg-input);
+    border: 2px solid var(--border);
+    color: var(--text-dim);
+}
+
+.loan-step-line {
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    transition: background 0.4s;
+}
+
+.loan-step-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 0.85rem;
+}
+
+.loan-step-title-2 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Purpose grid */
+.purpose-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+/* Loan detail grid */
+.loan-amount-duration-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Calc preview */
+.calc-preview {
+    font-size: 0.82rem;
+    padding: 0.6rem 0.85rem;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-bdr);
+    border-radius: var(--r);
+    display: none;
+    margin-bottom: 1rem;
+}
+
+/* Genre checkbox grid */
+.genre-checkbox-grid-wrap {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 0.75rem;
+}
+
+.genre-checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.4rem;
+}
+
+.genre-selected-display {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--gold);
+    min-height: 1rem;
+}
+
+/* Asset rows */
+.project-assets-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+}
+
+.asset-row {
+    margin-bottom: 0.85rem;
+}
+
+.asset-row-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.asset-row-label-optional {
+    font-weight: 400;
+}
+
+.asset-row-label-required {
+    color: var(--error);
+    font-size: 0.68rem;
+}
+
+.asset-row-input-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.asset-row-input-row input {
+    flex: 1;
+}
+
+.asset-upload-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.asset-upload-btn:hover {
+    border-color: var(--gold-bdr);
+    color: var(--gold);
+}
+
+.asset-filename {
+    font-size: 0.72rem;
+    color: var(--gold);
+    margin-top: 0.25rem;
+    min-height: 1rem;
+}
+
+/* Disbursement section */
+.disb-section {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.disb-section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+}
+
+.disb-section-sub {
+    font-weight: 400;
+    text-transform: none;
+    color: var(--text-dim);
+    font-size: 0.68rem;
+    margin-left: 0.25rem;
+}
+
+.disb-add-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.6rem;
+    padding: 0.45rem 0.85rem;
+    background: none;
+    border: 1px dashed var(--border);
+    border-radius: var(--r);
+    color: var(--gold);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    font-family: var(--font-b);
+}
+
+.disb-add-btn:hover {
+    border-color: var(--gold-bdr);
+}
+
+/* Loan step 2 bottom actions */
+.loan-step2-msg {
+    margin-bottom: 0.75rem;
+    min-height: 1rem;
+}
+
+.loan-step2-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* ── Repay modal ── */
+.repay-body {
+    padding: 0.5rem 0 1rem;
+}
+
+.repay-balance-bar {
+    background: var(--bg-input);
+    border-radius: var(--r);
+    padding: 0.85rem;
+    margin-bottom: 1rem;
+    font-size: 0.82rem;
+}
+
+.repay-balance-val {
+    color: var(--gold);
+}
+
+/* ── Compose email modal ── */
+.compose-info-bar {
+    background: var(--bg-input);
+    border-radius: var(--r);
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+}
+
+.compose-body {
+    padding: 0.5rem 0;
+}
+
+.compose-msg-wrap {
+    min-height: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+/* ── Generic icon-gold ── */
+.icon-gold {
+    color: var(--gold);
+}
+
+.icon-gold-mr {
+    color: var(--gold);
+    margin-right: 0.5rem;
+}
+
+.icon-gold-mr-sm {
+    color: var(--gold);
+    margin-right: 0.4rem;
+}
+
+.icon-gold-mr-xs {
+    color: var(--gold);
+    margin-right: 0.3rem;
+}
+
+.icon-dim {
+    color: var(--text-dim);
+}
+
+.icon-dim-mr {
+    color: var(--text-dim);
+    margin-right: 0.3rem;
+}
+
+/* ── Profile Modal & Completion Bar ── */
+#profileModal .modal-box {
+    max-width: 800px !important;
+    max-height: 90vh;
+}
+
+#profileModal .modal-scroll-area {
+    padding: 0;
+}
+
+.profile-completion-bar {
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-bdr);
+    border-radius: var(--r-lg);
+    padding: 1.25rem;
+    margin: 0 1.5rem 1.5rem;
+}
+
+.completion-progress {
+    height: 8px;
+    background: var(--bg-input);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.completion-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), #FFD700);
+    transition: width 0.4s ease;
+    border-radius: 4px;
+}
+
+/* Responsive profile modal */
+@media (max-width: 768px) {
+    #profileModal .modal-box {
+        max-width: 95vw !important;
+        margin: 1rem;
+    }
+
+    .profile-completion-bar {
+        margin: 0 1rem 1.5rem;
+        padding: 1rem;
+    }
+}
+
+/* Hide old inline edit area */
+#profileEditArea:empty {
+    display: none !important;
+}
+
+/* ── Fld margin bottom ── */
+.fld+.fld {
+    margin-bottom: 0;
+}
+
+.fld-mb075 {
+    margin-bottom: 0.75rem;
+}
+
+.fld-mb1 {
+    margin-bottom: 1rem;
+}
+
+/* ══ ACTION DROPDOWN ══ */
+.action-cell {
+    position: relative;
+    white-space: nowrap;
+}
+
+.action-dropdown-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.action-drop-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.7rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    color: var(--text);
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font-b);
+    transition: border-color 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+
+.action-drop-btn:hover {
+    border-color: var(--gold-bdr);
+    color: var(--gold);
+}
+
+.action-drop-btn .fa-chevron-down {
+    font-size: 0.55rem;
+    opacity: 0.6;
+    transition: transform 0.2s ease;
+}
+
+.action-drop-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 4px);
+    min-width: 168px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.action-dropdown-wrap.open .action-drop-menu {
+    display: block;
+}
+
+.action-drop-menu button {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    width: 100%;
+    padding: 0.65rem 1rem;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: var(--font-b);
+    text-align: left;
+    transition: background 0.12s;
+}
+
+.action-drop-menu button:hover {
+    background: var(--gold-dim);
+    color: var(--gold);
+}
+
+.action-drop-menu button i {
+    color: var(--gold);
+    width: 15px;
+    flex-shrink: 0;
+}
+
+.action-drop-menu button+button {
+    border-top: 1px solid var(--border);
+}
+
+/* ══ COMPOSE / MODAL BACK ICON BUTTON ══ */
+.btn-icon-back {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 0.9rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+    flex-shrink: 0;
+    margin-right: 0.25rem;
+}
+
+.btn-icon-back:hover {
+    background: var(--gold-dim);
+    color: var(--gold);
+}
+
+/* ══ SECURITY MODAL — remove old wide back btn styles ══ */
+.sec-modal-header {
+    justify-content: space-between !important;
+}
+
+.modal-back-btn.sec-back-btn {
+    display: none !important;
+}
+
+/* ══ MODAL BODY CONSISTENT PADDING ══ */
+.settings-body {
+    padding: 1rem 1.8rem 1.5rem;
+}
+
+#securityModal .sec-tabs-row {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* ============================================================
+   FILMNANCE — user-components-additions.css
+   Paste this ENTIRE block at the END of user-components.css
+   ============================================================ */
+
+/* ── Date Picker Box ── */
+.date-picker-box {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.65rem 0.9rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    cursor: pointer;
+    position: relative;
+    transition: border-color 0.2s;
+    user-select: none;
+}
+
+.date-picker-box:hover {
+    border-color: var(--gold-bdr);
+}
+
+/* ── Password eye wrap ── */
+.pw-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.pw-input-wrap input {
+    flex: 1;
+    padding-right: 2.5rem;
+}
+
+.pw-eye-btn {
+    position: absolute;
+    right: 0.6rem;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 0.3rem;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.pw-eye-btn:hover {
+    color: var(--text);
+}
+
+/* ── Security modal back button ── */
+.sec-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.65rem;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-size: 0.78rem;
+    cursor: pointer;
+    font-family: var(--font-b);
+    padding: 0.25rem 0;
+    transition: color 0.2s;
+}
+
+.sec-back-btn:hover {
+    color: var(--text);
+}
+
+/* ── Project Assets Cards ── */
+.assets-hdr {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.assets-hdr-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-bdr);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.assets-hdr-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text);
+}
+
+.assets-hdr-sub {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-top: 0.15rem;
+}
+
+.asset-card-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 0.85rem 1rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    margin-bottom: 0.55rem;
+    transition: border-color 0.2s;
+}
+
+.asset-card-row:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.asset-card-row-required {
+    border-color: rgba(212, 175, 55, 0.22);
+    background: rgba(212, 175, 55, 0.03);
+}
+
+.asset-card-icon-wrap {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.asset-icon-script {
+    background: rgba(99, 179, 237, 0.12);
+    color: #63b3ed;
+    border: 1px solid rgba(99, 179, 237, 0.25);
+}
+
+.asset-icon-lookbook {
+    background: var(--gold-dim);
+    color: var(--gold);
+    border: 1px solid var(--gold-bdr);
+}
+
+.asset-icon-trailer {
+    background: rgba(167, 139, 250, 0.12);
+    color: #a78bfa;
+    border: 1px solid rgba(167, 139, 250, 0.25);
+}
+
+.asset-card-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.asset-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.45rem;
+    flex-wrap: wrap;
+}
+
+.asset-card-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text);
+    font-family: var(--font-h);
+}
+
+.asset-card-type {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+}
+
+.asset-badge {
+    display: inline-block;
+    padding: 0.1rem 0.45rem;
+    border-radius: 20px;
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.asset-badge-optional {
+    background: rgba(107, 114, 128, 0.15);
+    color: var(--text-dim);
+    border: 1px solid rgba(107, 114, 128, 0.2);
+}
+
+.asset-badge-required {
+    background: rgba(212, 175, 55, 0.15);
+    color: var(--gold);
+    border: 1px solid var(--gold-bdr);
+}
+
+.asset-input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.asset-url-field {
+    flex: 1;
+    min-width: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    color: var(--text);
+    padding: 0.48rem 0.7rem;
+    font-size: 0.78rem;
+    font-family: var(--font-b);
+    transition: border-color 0.2s;
+}
+
+.asset-url-field:focus {
+    outline: none;
+    border-color: var(--gold-bdr);
+}
+
+.asset-url-field::placeholder {
+    color: var(--text-dim);
+}
+
+.asset-upload-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.48rem 0.7rem;
+    background: rgba(212, 175, 55, 0.07);
+    border: 1.5px solid rgba(212, 175, 55, 0.4);
+    border-radius: var(--r);
+    color: var(--gold);
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.asset-upload-trigger:hover {
+    border-color: var(--gold-bdr);
+    color: var(--gold);
+    background: var(--gold-dim);
+}
+
+.asset-chosen-file {
+    font-size: 0.7rem;
+    color: var(--gold);
+    margin-top: 0.3rem;
+    min-height: 0.85rem;
+}
+
+/* ── Disbursement button ── */
+.disb-add-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.4rem;
+    background: none;
+    border: 1px dashed var(--border);
+    border-radius: var(--r);
+    color: var(--gold);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font-b);
+}
+
+.disb-add-btn:hover {
+    border-color: var(--gold-bdr);
+    background: var(--gold-dim);
+}
+
+/* ── Compose modal ── */
+#composeEmailModal .modal-box {
+    display: flex !important;
+    flex-direction: column;
+    max-height: 88vh;
+}
+
+.compose-info-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+}
+
+/* ── 3-step dots ── */
+.loan-step-dot-inactive {
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    color: var(--text-dim) !important;
+    background: transparent !important;
+}
+
+.loan-step-dot.done {
+    border-color: var(--success) !important;
+    color: var(--success) !important;
+    background: rgba(34, 197, 94, 0.1) !important;
+}
+
+.loan-step-dot.active {
+    border-color: var(--gold) !important;
+    color: var(--gold) !important;
+    background: var(--gold-dim) !important;
+}
+
+/* light theme overrides */
+[data-theme="light"] .asset-url-field {
+    background: #fff;
+}
+
+[data-theme="light"] .asset-card-row {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="light"] .asset-upload-trigger {
+    background: #f0f0f0;
+}
+
+[data-theme="light"] .date-picker-box {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="light"] .pw-eye-btn {
+    color: #888;
+}

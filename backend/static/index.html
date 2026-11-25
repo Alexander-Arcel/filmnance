@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Filmnance — Entry</title>
+    <link rel="stylesheet" href="/static/style.css?v=2">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="glow-top"></div>
+    <div class="glow-bottom"></div>
+
+    <div class="auth-container">
+
+        <!-- ═══════════ LEFT BRANDING ═══════════ -->
+        <div class="branding-side">
+            <div class="branding-header">
+                <div class="logo-box">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="6" width="20" height="13" rx="2" stroke="#d4af37" stroke-width="1.6" />
+                        <path d="M7 6V4M12 6V4M17 6V4" stroke="#d4af37" stroke-width="1.6" stroke-linecap="round" />
+                        <path d="M7 19v1M12 19v1M17 19v1" stroke="#d4af37" stroke-width="1.6" stroke-linecap="round" />
+                        <path d="M2 10h20" stroke="#d4af37" stroke-width="1.2" opacity="0.5" />
+                        <circle cx="12" cy="14" r="2" fill="#d4af37" opacity="0.6" />
+                    </svg>
+                </div>
+                <div class="logo-text">FILMNANCE</div>
+            </div>
+            <div class="branding-body">
+                <!-- ORDER: quote → film title/date → divider → Empowering → tagline -->
+                <div class="film-quote" id="filmQuote">
+                    <blockquote id="filmQuoteText">Every ending is just the beginning of another story.</blockquote>
+                    <cite id="filmQuoteCite">— Filmnance</cite>
+                </div>
+                <div class="branding-divider"></div>
+                <h1 class="title">Empowering<br>Indie Vision.</h1>
+                <div class="accent-bar"></div>
+                <p class="tagline">Financial Ecosystem for Indie Filmmakers</p>
+            </div>
+            <div class="branding-footer">
+                <p class="branding-note">Trusted by independent creators across the Philippines.</p>
+            </div>
+        </div>
+
+        <!-- ═══════════ RIGHT FORMS ═══════════ -->
+        <div class="form-side" id="formSide">
+
+            <!-- ── 1. LOGIN ── -->
+            <div id="loginView" class="view active">
+                <div class="form-header">
+                    <h3>Authenticate</h3>
+                    <p>Enter your producer credentials.</p>
+                </div>
+                <form id="loginForm" novalidate>
+                    <div class="input-group">
+                        <label>Email</label>
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-envelope icon-left"></i>
+                            <input type="email" id="email" placeholder="Email address" required autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <div class="input-wrapper has-eye">
+                            <i class="fa-solid fa-lock icon-left"></i>
+                            <input type="password" id="password" placeholder="••••••••" required
+                                autocomplete="current-password">
+                            <button type="button" class="eye-btn" onmousedown="showPass('password')"
+                                onmouseup="hidePass('password')" onmouseleave="hidePass('password')"
+                                ontouchstart="showPass('password');return false;" ontouchend="hidePass('password')">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">AUTHENTICATE</button>
+                </form>
+                <div class="form-footer">
+                    <a href="#" onclick="showView('forgotView');return false;">Forgot Password?</a>
+                    <span class="divider">|</span>
+                    <a href="#" onclick="showView('registerView');return false;">New Producer?</a>
+                </div>
+                <p id="loginMsg" class="status-msg"></p>
+            </div>
+
+            <!-- ── 2. REGISTER ── -->
+            <div id="registerView" class="view">
+                <div class="form-header">
+                    <h3>Establish ID</h3>
+                    <p>Join the filmmaker ecosystem.</p>
+                </div>
+                <form id="registerForm" novalidate>
+                    <div class="input-group">
+                        <label>Name</label>
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-user icon-left"></i>
+                            <input type="text" id="regName" placeholder="Your Name" required autocomplete="name">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Email</label>
+                        <div class="input-wrapper">
+                            <i class="fa-regular fa-envelope icon-left"></i>
+                            <input type="email" id="regEmail" placeholder="Email address" required autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Password</label>
+                        <div class="input-wrapper has-eye">
+                            <i class="fa-solid fa-lock icon-left"></i>
+                            <input type="password" id="regPass" placeholder="Min. 8 chars" required
+                                autocomplete="new-password" oninput="checkPolicy(this.value)">
+                            <button type="button" class="eye-btn" onmousedown="showPass('regPass')"
+                                onmouseup="hidePass('regPass')" onmouseleave="hidePass('regPass')"
+                                ontouchstart="showPass('regPass');return false;" ontouchend="hidePass('regPass')">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="policy-box">
+                            <div class="policy-item" id="p-length"><i class="fa-solid fa-circle-xmark"></i><span>At
+                                    least 8 characters</span></div>
+                            <div class="policy-item" id="p-upper"><i class="fa-solid fa-circle-xmark"></i><span>One
+                                    uppercase letter</span></div>
+                            <div class="policy-item" id="p-number"><i class="fa-solid fa-circle-xmark"></i><span>One
+                                    number (0–9)</span></div>
+                            <div class="policy-item" id="p-special"><i class="fa-solid fa-circle-xmark"></i><span>One
+                                    special character</span></div>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Confirm Password</label>
+                        <div class="input-wrapper has-eye">
+                            <i class="fa-solid fa-lock icon-left"></i>
+                            <input type="password" id="signupConfirmPassword" placeholder="••••••••" required
+                                autocomplete="new-password">
+                            <button type="button" class="eye-btn" onmousedown="showPass('signupConfirmPassword')"
+                                onmouseup="hidePass('signupConfirmPassword')"
+                                onmouseleave="hidePass('signupConfirmPassword')"
+                                ontouchstart="showPass('signupConfirmPassword');return false;"
+                                ontouchend="hidePass('signupConfirmPassword')">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn" id="registerBtn">ESTABLISH ACCOUNT</button>
+                </form>
+                <div class="form-footer">
+                    <a href="#" onclick="showView('loginView');return false;">← Back to Login</a>
+                </div>
+                <p id="registerMsg" class="status-msg"></p>
+            </div>
+
+            <!-- ── 3. SETUP SECURITY ── -->
+            <div id="setupView" class="view">
+                <div class="form-header">
+                    <h3>Secure Your Account</h3>
+                    <p>Final step — set recovery details and transaction PIN.</p>
+                </div>
+                <div class="step-track">
+                    <div class="step-node done"><i class="fa-solid fa-check"></i></div>
+                    <div class="step-connector done"></div>
+                    <div class="step-node active">2</div>
+                    <div class="step-connector"></div>
+                    <div class="step-node">3</div>
+                </div>
+                <div class="step-labels-row">
+                    <span>Identity</span><span>Security</span><span>Dashboard</span>
+                </div>
+                <!-- Same-email warning (shown dynamically) -->
+                <div class="same-email-warning" id="sameEmailWarn">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span>Both recovery emails are the same. This works, but using different emails is recommended for
+                        better security.</span>
+                </div>
+                <form id="setupForm" novalidate>
+                    <div class="input-group">
+                        <label>Password Recovery Email</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-shield-halved icon-left"></i>
+                            <input type="email" id="setupRecovery" placeholder="Enter your email" required
+                                autocomplete="email" oninput="checkSameEmail()">
+                        </div>
+                        <p class="field-hint">
+                            <i class="fa-solid fa-circle-info"></i>
+                            Used to recover your <strong>password</strong> if you forget it.
+                        </p>
+                    </div>
+                    <div class="input-group">
+                        <label>PIN Recovery Email <span class="hint-rec">(recommended: different email)</span></label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-key icon-left"></i>
+                            <input type="email" id="setupPinRecovery" placeholder="Email address" required
+                                autocomplete="email" oninput="checkSameEmail()">
+                        </div>
+                        <p class="field-hint">
+                            <i class="fa-solid fa-circle-info"></i>
+                            Used to recover your <strong>transaction PIN</strong>.
+                        </p>
+                    </div>
+                    <div class="input-group">
+                        <label>6-Digit Transaction PIN</label>
+                        <div class="input-wrapper has-eye">
+                            <i class="fa-solid fa-hashtag icon-left"></i>
+                            <input type="password" id="setupPin" placeholder="••••••" maxlength="6" pattern="\d{6}"
+                                inputmode="numeric" required>
+                            <button type="button" class="eye-btn" onmousedown="showPass('setupPin')"
+                                onmouseup="hidePass('setupPin')" onmouseleave="hidePass('setupPin')"
+                                ontouchstart="showPass('setupPin');return false;" ontouchend="hidePass('setupPin')">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <p class="field-hint">
+                            <i class="fa-solid fa-circle-info"></i>
+                            Required to authorize loan and payment actions.
+                        </p>
+                    </div>
+                    <button type="submit" class="submit-btn">COMPLETE SETUP →</button>
+                </form>
+                <p id="setupMsg" class="status-msg"></p>
+            </div>
+
+            <!-- ── 4. FROZEN WARNING ── -->
+            <div id="frozenView" class="view">
+                <div class="frozen-card">
+                    <div class="frozen-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="frozen-title">Account Frozen</h3>
+                    <p class="frozen-subtitle">Login from a new location detected.</p>
+                    <div class="frozen-divider"></div>
+                    <p class="frozen-body">
+                        For your protection, your account has been temporarily frozen.
+                        A security email was sent to your registered login address.
+                    </p>
+                    <div class="frozen-email-badge">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span id="frozenEmailDisplay">your login email</span>
+                    </div>
+                    <p class="frozen-instruction">
+                        Open the email and click <strong>"YES, IT WAS ME"</strong> to instantly restore access.
+                        If it wasn't you, click "NO" to secure your account.
+                    </p>
+                    <div class="frozen-actions">
+                        <button class="resend-btn" id="resendBtn" onclick="requestResend()">
+                            <i class="fa-solid fa-rotate-right"></i>&nbsp; Resend Email
+                        </button>
+                        <p class="resend-status" id="resendStatus"></p>
+                    </div>
+                </div>
+                <div class="form-footer">
+                    <a href="#" onclick="showView('loginView');return false;">← Back to Login</a>
+                </div>
+            </div>
+
+            <!-- ── 5. FORGOT PASSWORD ── -->
+            <div id="forgotView" class="view">
+                <div class="form-header">
+                    <h3>Recover Access</h3>
+                    <p>Enter your recovery email to receive an OTP code.</p>
+                </div>
+                <form id="forgotForm" novalidate>
+                    <div class="input-group">
+                        <label>Recovery Email</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-shield-halved icon-left"></i>
+                            <input type="email" id="forgotEmail" placeholder="Enter your email" required
+                                autocomplete="email">
+                        </div>
+                        <p class="field-hint">
+                            <i class="fa-solid fa-circle-info"></i>
+                            Enter the alternate email address linked to your account.
+                        </p>
+                    </div>
+                    <button type="submit" class="submit-btn">SEND OTP CODE</button>
+                </form>
+                <div class="form-footer">
+                    <a href="#" onclick="showView('loginView');return false;">← Back to Login</a>
+                </div>
+                <p id="forgotMsg" class="status-msg"></p>
+            </div>
+
+            <!-- ── 6. RESET PASSWORD — 2 steps: verify OTP first, then set password ── -->
+            <div id="resetView" class="view">
+                <!-- Step A: Verify OTP only -->
+                <div id="resetStepA">
+                    <div class="form-header">
+                        <h3>Verify OTP</h3>
+                        <p>Enter the 6-digit code sent to your recovery email.</p>
+                    </div>
+                    <div class="input-group">
+                        <label>6-Digit OTP Code</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-hashtag icon-left"></i>
+                            <input type="text" id="resetOtp" placeholder="123456" maxlength="6" inputmode="numeric">
+                        </div>
+                    </div>
+                    <button class="submit-btn" onclick="verifyResetOtp()">VERIFY OTP</button>
+                    <div class="form-footer">
+                        <a href="#" onclick="showView('forgotView');return false;">← Back</a>
+                    </div>
+                    <p id="resetOtpMsg" class="status-msg"></p>
+                </div>
+                <!-- Step B: Set new password (only shown after OTP verified) -->
+                <div id="resetStepB" style="display:none">
+                    <div class="form-header">
+                        <h3>Set New Password</h3>
+                        <p>OTP verified. Now set your new password.</p>
+                    </div>
+                    <div class="input-group">
+                        <label>New Password</label>
+                        <div class="input-wrapper has-eye">
+                            <i class="fa-solid fa-lock icon-left"></i>
+                            <input type="password" id="resetPass" placeholder="••••••••"
+                                oninput="checkPolicy(this.value,'reset')">
+                            <button type="button" class="eye-btn" onmousedown="showPass('resetPass')"
+                                onmouseup="hidePass('resetPass')" onmouseleave="hidePass('resetPass')"
+                                ontouchstart="showPass('resetPass');return false;" ontouchend="hidePass('resetPass')">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                        <div id="policyBoxReset" class="policy-box">
+                            <div class="policy-item" id="rp-length"><i class="fa-solid fa-circle-xmark"></i><span>At
+                                    least 8 characters</span></div>
+                            <div class="policy-item" id="rp-upper"><i class="fa-solid fa-circle-xmark"></i><span>One
+                                    uppercase letter</span></div>
+                            <div class="policy-item" id="rp-number"><i class="fa-solid fa-circle-xmark"></i><span>One
+                                    number (0–9)</span></div>
+                            <div class="policy-item" id="rp-special"><i class="fa-solid fa-circle-xmark"></i><span>One
+                                    special character</span></div>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Confirm Password</label>
+                        <div class="input-wrapper has-eye">
+                            <i class="fa-solid fa-lock icon-left"></i>
+                            <input type="password" id="resetPassConfirm" placeholder="••••••••">
+                            <button type="button" class="eye-btn" onmousedown="showPass('resetPassConfirm')"
+                                onmouseup="hidePass('resetPassConfirm')" onmouseleave="hidePass('resetPassConfirm')"
+                                ontouchstart="showPass('resetPassConfirm');return false;"
+                                ontouchend="hidePass('resetPassConfirm')">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="submit-btn" onclick="submitResetPassword()">UPDATE PASSWORD</button>
+                    <p id="resetMsg" class="status-msg"></p>
+                </div>
+            </div>
+
+        </div><!-- end form-side -->
+    </div><!-- end auth-container -->
+
+    <!-- Auth core (shared helpers, view switcher, film quotes) — must load first -->
+    <script src="/static/js/auth/auth-core.js"></script>
+    <!-- Per-view scripts -->
+    <script src="/static/js/auth/login.js"></script>
+    <script src="/static/js/auth/signup.js"></script>
+    <script src="/static/js/auth/setup-security.js"></script>
+    <script src="/static/js/auth/frozen.js"></script>
+    <script src="/static/js/auth/forgot-password.js"></script>
+    <script src="/static/js/auth/reset-password.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmnance — Filmmaker Portal</title>
+    <link rel="stylesheet" href="/static/user/user_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body style="display:none" data-theme="dark">
+
+    <!-- ══ SIDEBAR ══ -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-top">
+            <div class="brand">
+                <div class="brand-icon"><i class="fa-solid fa-clapperboard"></i></div>
+                <div class="brand-text">
+                    <span class="brand-name">FILMNANCE</span>
+                    <span class="brand-role">FILMMAKER PORTAL</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section-label">OVERVIEW</div>
+                <a href="#" class="nav-item active" id="navDash"
+                    onclick="showSection('overviewSection',this,'Dashboard','Your active projects and repayment overview');return false">
+                    <i class="fas fa-chart-line"></i><span>Dashboard</span>
+                </a>
+
+                <div class="nav-section-label">MY WORK</div>
+                <a href="#" class="nav-item" id="navMyProfile"
+                    onclick="showSection('myProfileSection',this,'My Profile','Your filmmaker profile, identity and trust score');return false">
+                    <i class="fas fa-circle-user"></i><span>My Profile</span>
+                </a>
+                <a href="#" class="nav-item" id="navMyProjects"
+                    onclick="showSection('myProjectsSection',this,'My Projects','All your film projects');return false">
+                    <i class="fas fa-film"></i><span>My Projects</span>
+                </a>
+
+                <div class="nav-section-label">ACTIONS</div>
+                <a href="#" class="nav-item" id="navNewApp"
+                    onclick="openModal('loanModal');loadDisbursementOptions();return false">
+                    <i class="fas fa-file-invoice-dollar"></i><span>New Application</span>
+                </a>
+                <a href="#" class="nav-item" id="navReqPay"
+                    onclick="openRequestPaymentModal();return false">
+                    <i class="fas fa-clock-rotate-left"></i><span>Delay Request</span>
+                </a>
+                <a href="#" class="nav-item" id="navRepayment"
+                    onclick="showSection('scheduleSection',this,'Repayment','All your scheduled installments');return false">
+                    <i class="fas fa-calendar-days"></i><span>Repayment</span>
+                </a>
+
+                <div class="nav-section-label">RECORDS</div>
+                <a href="#" class="nav-item" id="navTx"
+                    onclick="showSection('txSection',this,'Transaction History','Complete record of all your payments');return false">
+                    <i class="fas fa-receipt"></i><span>Transaction History</span>
+                </a>
+                <a href="#" class="nav-item" id="navResources"
+                    onclick="showSection('resourcesSection',this,'Loan','Your loan and repayment summary');return false">
+                    <i class="fas fa-file-contract"></i><span>Loan</span>
+                </a>
+
+                <div class="nav-section-label">SYSTEM</div>
+                <a href="#" class="nav-item" id="navSettings"
+                    onclick="openSettingsModal();return false">
+                    <i class="fas fa-gear"></i><span>Settings</span>
+                </a>
+            </nav>
+        </div>
+
+        <div class="sidebar-bottom">
+            <div class="admin-profile">
+                <div class="admin-avatar">
+                    <i class="fas fa-circle-user"></i>
+                </div>
+                <div class="admin-info">
+                    <span class="admin-name" id="userNameDisplay">Filmmaker</span>
+                    <span class="admin-label" id="userRoleDisplay">Producer</span>
+                </div>
+                <span id="sidebarStatusBadge" class="nav-badge"
+                    style="display:none;background:rgba(34,197,94,0.15);color:var(--success);border:1px solid rgba(34,197,94,0.3)"></span>
+            </div>
+            <button class="exit-btn" onclick="handleLogout()">
+                <i class="fa-solid fa-right-from-bracket"></i> LOGOUT
+            </button>
+        </div>
+    </aside>
+
+    <!-- ══ MAIN ══ -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                <span class="page-subtitle" id="pageSubtitle">Your active projects and repayment overview</span>
+            </div>
+            <div class="topbar-right">
+                <span class="topbar-time" id="topbarTime"></span>
+                <div style="position:relative">
+                    <button class="notif-btn" id="notifBell" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="notif-badge" id="notifBadge" style="display:none">0</span>
+                    </button>
+                </div>
+                <button class="refresh-btn" onclick="loadDashboard()">
+                    <i class="fa-solid fa-rotate-right"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- ══════════ OVERVIEW / DASHBOARD ══════════ -->
+        <section class="dash-section active-section" id="overviewSection">
+            <!-- KPI cards -->
+            <div class="kpi-grid" id="kpiGrid"></div>
+            <!-- Active Projects + Recent Transactions side by side -->
+            <div class="dash-lower">
+                <div class="panel" id="dashActiveProjectsPanel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-film" style="margin-right:0.5rem;color:var(--gold)"></i>Active Projects</h3>
+                        <button class="panel-link"
+                            onclick="showSection('myProjectsSection',document.getElementById('navMyProjects'),'My Projects','All your film projects')">View All →</button>
+                    </div>
+                    <div class="panel-body" style="padding:0">
+                        <table class="data-table">
+                            <thead><tr><th>Project</th><th>Genre</th><th>Status</th></tr></thead>
+                            <tbody id="dashLoansPreview">
+                                <tr><td colspan="3" class="empty-row">No active projects yet.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-receipt" style="margin-right:0.5rem;color:var(--gold)"></i>Recent Transactions</h3>
+                        <button class="panel-link"
+                            onclick="showSection('txSection',document.getElementById('navTx'),'Transaction History','Complete record of all your payments')">View All →</button>
+                    </div>
+                    <div class="panel-body" style="padding:0">
+                        <table class="data-table">
+                            <thead><tr><th>Date</th><th>Type</th><th>Amount</th></tr></thead>
+                            <tbody id="dashTxPreview">
+                                <tr><td colspan="3" class="empty-row">No transactions yet.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Next Repayment Due -->
+            <div class="panel" style="margin-top:1.1rem">
+                <div class="panel-header">
+                    <h3><i class="fas fa-calendar-days" style="margin-right:0.5rem;color:var(--gold)"></i>Next Repayment Due</h3>
+                    <button class="panel-link"
+                        onclick="showSection('scheduleSection',document.getElementById('navRepayment'),'Repayment','All your scheduled installments')">Full Schedule →</button>
+                </div>
+                <div class="panel-body" style="padding:0">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Project</th><th>Installment #</th><th>Due Date</th>
+                                <th>Amount Due</th><th>Status</th><th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="nextDueTableBody">
+                            <tr><td colspan="6" class="empty-row">No active loans with upcoming payments.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ MY PROFILE ══════════ -->
+        <section class="dash-section" id="myProfileSection">
+            <!-- Injected by user-profile.js on first visit -->
+        </section>
+
+        <!-- ══════════ MY PROJECTS ══════════ -->
+        <section class="dash-section" id="myProjectsSection">
+            <div class="section-toolbar">
+                <div class="filter-tabs" id="genreFilterTabs"></div>
+            </div>
+            <div id="projectsTableMount"></div>
+        </section>
+
+        <!-- ══════════ REPAYMENT SCHEDULE ══════════ -->
+        <section class="dash-section" id="scheduleSection">
+            <div class="section-toolbar">
+                <div class="filter-tabs" id="scheduleLoanTabs"></div>
+            </div>
+            <div class="panel">
+                <div class="panel-body" style="padding:0">
+                    <div style="overflow-x:auto">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th><th>Project</th><th>Due Date</th>
+                                    <th>Amount</th><th>Status</th><th>Delay</th><th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="fullSchedTableBody">
+                                <tr><td colspan="7" class="empty-row">No schedule yet.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ TRANSACTION HISTORY ══════════ -->
+        <section class="dash-section" id="txSection">
+            <div class="panel">
+                <div class="panel-header">
+                    <h3>Transaction History</h3>
+                    <span class="panel-hint" id="txCount"></span>
+                </div>
+                <div class="panel-body" style="padding:0">
+                    <div style="overflow-x:auto">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date &amp; Time</th><th>Project</th><th>Transaction Type</th>
+                                    <th>Payment Method</th><th>Amount</th><th>Receipt</th>
+                                </tr>
+                            </thead>
+                            <tbody id="txTableBody">
+                                <tr><td colspan="6" class="empty-row">No transactions yet.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════ LOAN / RESOURCES ══════════ -->
+        <section class="dash-section" id="resourcesSection">
+            <div id="resourcesMount"></div>
+        </section>
+
+    </main>
+
+    <!-- ══ MODALS — empty shells, content injected by JS ══ -->
+
+    <!-- Settings -->
+    <div class="modal" id="settingsModal" style="display:none">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3><i class="fas fa-gear" style="margin-right:0.5rem;color:var(--gold)"></i>Settings</h3>
+                <button class="modal-close" onclick="closeModal('settingsModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-scroll-area" id="settingsModalBody"></div>
+        </div>
+    </div>
+
+    <!-- Security -->
+    <div class="modal" id="securityModal" style="display:none">
+        <div class="modal-box modal-wide">
+            <div class="modal-header">
+                <h3 id="securityModalTitle">Security</h3>
+                <button class="modal-close" onclick="closeModal('securityModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="securityModalBody"></div>
+        </div>
+    </div>
+
+    <!-- Profile edit -->
+    <div class="modal" id="profileModal" style="display:none">
+        <div class="modal-box modal-wide" id="profileModalBox">
+            <div class="modal-header">
+                <h3>Edit Profile</h3>
+                <button class="modal-close" onclick="closeModal('profileModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="profileModalBody" style="padding:0"></div>
+        </div>
+    </div>
+
+    <!-- Loan Application -->
+    <span id="loanModalHomeAnchor" style="display:none"></span>
+    <div class="modal" id="loanModal" style="display:none">
+        <div class="modal-box modal-wide" id="loanModalBox"
+            style="max-width:680px;max-height:92vh;display:flex;flex-direction:column">
+            <div class="modal-header" style="flex-shrink:0">
+                <h3><i class="fas fa-file-invoice-dollar" style="margin-right:0.5rem;color:var(--gold)"></i>New Loan Application</h3>
+                <button class="modal-close" id="loanModalCloseBtn" onclick="closeLoanApplication()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="loanModalBody" style="overflow-y:auto;flex:1"></div>
+        </div>
+    </div>
+
+    <!-- Request Payment -->
+    <div class="modal" id="requestPaymentModal" style="display:none">
+        <div class="modal-box modal-wide">
+            <div class="modal-header">
+                <h3><i class="fas fa-clock-rotate-left" style="margin-right:0.5rem;color:var(--gold)"></i>Request Payment</h3>
+                <button class="modal-close" onclick="closeModal('requestPaymentModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="requestPaymentBody"></div>
+        </div>
+    </div>
+
+    <!-- Repayment -->
+    <div class="modal" id="repayModal" style="display:none">
+        <div class="modal-box" style="max-width:440px">
+            <div class="modal-header">
+                <h3 id="repayModalTitle">Repay —</h3>
+                <button class="modal-close" onclick="closeModal('repayModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="repayModalBody"></div>
+        </div>
+    </div>
+
+    <!-- Pay Method -->
+    <div class="modal" id="payMethodModal" style="display:none">
+        <div class="modal-box" style="max-width:560px;max-height:90vh;overflow-y:auto">
+            <div class="modal-header">
+                <h3><i class="fas fa-wallet" style="margin-right:0.5rem;color:var(--gold)"></i>Payment Methods</h3>
+                <button class="modal-close" onclick="closeModal('payMethodModal');refreshRepayMethodCards()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="payMethodBody"></div>
+        </div>
+    </div>
+
+    <!-- Compose Email -->
+    <div class="modal" id="composeEmailModal" style="display:none">
+        <div class="modal-box modal-wide" style="max-width:560px;max-height:88vh;display:flex;flex-direction:column">
+            <div class="modal-header" style="flex-shrink:0">
+                <h3><i class="fas fa-paper-plane" style="margin-right:0.5rem;color:var(--gold)"></i>Send Message</h3>
+                <button class="modal-close" onclick="closeModal('composeEmailModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" id="composeEmailBody" style="overflow-y:auto;flex:1"></div>
+        </div>
+    </div>
+
+    <!-- Notification Panel -->
+    <div id="notifPanel" class="notif-panel" style="display:none">
+        <div class="notif-panel-header">
+            <span>Notifications</span>
+            <button onclick="toggleNotifications()"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="notifList" class="notif-list"></div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <!-- Scripts — core first, feature modules after -->
+    <script src="/static/user/user-core.js"></script>
+    <script src="/static/user/user-ui.js"></script>
+    <script src="/static/user/user-dashboard.js"></script>
+    <script src="/static/user/user-profile.js"></script>
+    <script src="/static/user/user-security.js"></script>
+    <script src="/static/user/user-loan.js"></script>
+    <script src="/static/user/user-projects.js"></script>
+    <script src="/static/user/user-compose.js"></script>
+    <script src="/static/user/user-notifications.js"></script>
+</body>
+</html>

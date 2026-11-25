@@ -1,0 +1,59 @@
+/* =============================================
+   admin-overrides.css
+   Animations, interaction states, KPI card
+   colour variants, and active-loans summary
+   cards. Previously lived as an inline <style>
+   block in admin_dashboard.html.
+   ============================================= */
+
+        body { display: none }
+
+        @keyframes slideInRight {
+            from { transform: translateX(110%); opacity: 0 }
+            to { transform: translateX(0); opacity: 1 }
+        }
+
+        .action-btn { transition: filter 0.15s, transform 0.12s, box-shadow 0.15s !important; }
+        .action-btn:hover { filter: brightness(1.18); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,0.35); }
+        .action-btn:active { transform: translateY(0); filter: brightness(0.95); }
+        .filter-tab { transition: all 0.15s !important; }
+        .filter-tab:not([style*="pointer-events:none"]):hover { filter: brightness(1.15); transform: translateY(-1px); }
+        .nav-item { transition: background 0.15s, color 0.15s, border-left-color 0.15s !important; }
+
+        .msg-reply-btn { transition: all 0.15s !important; }
+        .msg-reply-btn:hover { background: rgba(212,175,55,0.22) !important; border-color: rgba(212,175,55,0.7) !important; transform: translateY(-1px); }
+        .msg-delete-btn { transition: all 0.15s !important; }
+        .msg-delete-btn:hover { background: rgba(239,68,68,0.2) !important; border-color: rgba(239,68,68,0.6) !important; transform: translateY(-1px); }
+        .modal-close { transition: all 0.15s !important; }
+        .modal-close:hover { background: rgba(255,255,255,0.08) !important; color: var(--text) !important; }
+        .exit-btn { transition: all 0.15s !important; }
+        .exit-btn:hover { filter: brightness(1.15); }
+        button:not([disabled]):hover { cursor: pointer; }
+
+        /* KPI cards: icon, label, value colored by default; only border glows on hover */
+        .kpi-card { border: 1px solid var(--border); transition: border-color 0.2s, box-shadow 0.2s; }
+        /* Default: full color always visible */
+        .kpi-card.kpi-green .kpi-icon { background: rgba(34,197,94,0.15) !important; }
+        .kpi-card.kpi-green .kpi-icon i { color: #22c55e !important; opacity: 1 !important; }
+        .kpi-card.kpi-green .kpi-value { color: #22c55e !important; }
+        .kpi-card.kpi-red .kpi-icon { background: rgba(239,68,68,0.15) !important; }
+        .kpi-card.kpi-red .kpi-icon i { color: #ef4444 !important; opacity: 1 !important; }
+        .kpi-card.kpi-red .kpi-value { color: #ef4444 !important; }
+        .kpi-card.kpi-yellow .kpi-icon { background: rgba(234,179,8,0.15) !important; }
+        .kpi-card.kpi-yellow .kpi-icon i { color: #eab308 !important; opacity: 1 !important; }
+        .kpi-card.kpi-yellow .kpi-value { color: #eab308 !important; }
+        .kpi-card.kpi-orange .kpi-icon { background: rgba(249,115,22,0.15) !important; }
+        .kpi-card.kpi-orange .kpi-icon i { color: #f97316 !important; opacity: 1 !important; }
+        .kpi-card.kpi-orange .kpi-value { color: #f97316 !important; }
+        /* Hover: only border glows, no other change */
+        .kpi-card.kpi-green:hover { border-color: rgba(34,197,94,0.7) !important; box-shadow: 0 0 0 2px rgba(34,197,94,0.1); }
+        .kpi-card.kpi-red:hover { border-color: rgba(239,68,68,0.7) !important; box-shadow: 0 0 0 2px rgba(239,68,68,0.1); }
+        .kpi-card.kpi-yellow:hover { border-color: rgba(234,179,8,0.7) !important; box-shadow: 0 0 0 2px rgba(234,179,8,0.1); }
+        .kpi-card.kpi-orange:hover { border-color: rgba(249,115,22,0.7) !important; box-shadow: 0 0 0 2px rgba(249,115,22,0.1); }
+
+        /* Active loans summary cards — compact inline row, same height as repayment bar */
+        .al-summary-grid { display:flex; gap:0.75rem; margin-bottom:1.25rem; flex-wrap:wrap; align-items:stretch; }
+        .al-summary-card { display:flex; align-items:center; gap:0.75rem; padding:0.55rem 0.9rem; background:var(--bg-card); border:1px solid var(--border); border-radius:10px; min-width:0; }
+        .al-summary-label { font-size:0.6rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-dim); font-weight:700; white-space:nowrap; }
+        .al-summary-value { font-size:0.95rem; font-weight:800; color:var(--text); white-space:nowrap; }
+        .al-summary-sub { font-size:0.62rem; color:var(--text-dim); white-space:nowrap; }

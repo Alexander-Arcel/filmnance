@@ -1,0 +1,388 @@
+/* ============================================
+   user-forms.css — Form elements, inputs, PIN gate, security tabs
+   ============================================ */
+
+.form-section {
+    margin-bottom: 1.8rem;
+}
+
+.form-section-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.9;
+}
+
+.form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem;
+}
+
+.fld {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.fld-full {
+    grid-column: 1 / -1;
+}
+
+.fld label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+}
+
+.fld-hint {
+    font-size: 0.62rem;
+    color: var(--text-dim);
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+}
+
+.fld input,
+.fld select,
+.fld textarea {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    color: var(--text);
+    font-family: var(--font-b);
+    font-size: 0.85rem;
+    padding: 0.7rem 0.9rem;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    width: 100%;
+}
+
+.fld input:focus,
+.fld select:focus,
+.fld textarea:focus {
+    border-color: var(--gold-bdr);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.fld select option {
+    background: #1a1a1a;
+}
+
+.fld textarea {
+    resize: vertical;
+}
+
+.file-input {
+    padding: 0.5rem;
+}
+
+.pin-field {
+    font-size: 1.2rem;
+    letter-spacing: 0.3em;
+    text-align: center;
+}
+
+.input-eye-wrap {
+    position: relative;
+    display: flex;
+}
+
+.input-eye-wrap input {
+    padding-right: 2.8rem;
+}
+
+.eye-tiny {
+    position: absolute;
+    right: 0.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 0.78rem;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.eye-tiny:hover {
+    color: var(--gold);
+}
+
+/* ── PIN Gate ── */
+.pin-gate {
+    padding: 2rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.pin-gate-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-bdr);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin-bottom: 0.3rem;
+}
+
+.pin-gate-label {
+    font-size: 0.84rem;
+    color: var(--text-dim);
+    max-width: 280px;
+}
+
+.pin-input-row {
+    width: 100%;
+    max-width: 200px;
+}
+
+.pin-gate-error {
+    font-size: 0.75rem;
+    color: var(--error);
+    min-height: 1em;
+}
+
+/* ── Security Tabs ── */
+.sec-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    background: var(--bg-input);
+    padding: 0.3rem;
+    border-radius: var(--r);
+}
+
+.sec-tab {
+    flex: 1;
+    padding: 0.65rem;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border-radius: calc(var(--r) - 2px);
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.sec-tab.active {
+    background: var(--gold);
+    color: #000;
+}
+
+.sec-tab-body {
+    display: none;
+}
+
+.sec-tab-body.active-tab {
+    display: block;
+}
+
+.sec-step {
+    display: none;
+}
+
+.active-step {
+    display: block;
+}
+
+.sec-desc {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin-bottom: 1.1rem;
+    line-height: 1.6;
+}
+
+/* ── Policy Box (shared: signup + security modal) ── */
+.policy-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3rem 0.6rem;
+    padding: 0.7rem 0.9rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    margin-top: 0.4rem;
+}
+
+.policy-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.71rem;
+    color: var(--text-dim);
+    transition: color 0.2s;
+}
+
+.policy-item i {
+    font-size: 0.65rem;
+    color: var(--error);
+    flex-shrink: 0;
+}
+
+.policy-item.pass {
+    color: var(--success);
+}
+
+.policy-item.pass i {
+    color: var(--success);
+}
+
+/* ── Light mode: ensure all form inputs are visible ── */
+[data-theme="light"] .fld input,
+[data-theme="light"] .fld select,
+[data-theme="light"] .fld textarea {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.15);
+    color: #111111;
+}
+
+[data-theme="light"] .fld input:focus,
+[data-theme="light"] .fld select:focus,
+[data-theme="light"] .fld textarea:focus {
+    border-color: var(--gold-bdr);
+    background: #fff;
+}
+
+[data-theme="light"] .fld select option {
+    background: #ffffff;
+    color: #111111;
+}
+
+[data-theme="light"] .pin-gate {
+    background: #f9f9f9;
+}
+
+[data-theme="light"] .policy-box {
+    background: #f9f9f9;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .policy-item {
+    color: #64748b;
+}
+
+/* ── Profile Section Cards (3 separate save sections) ── */
+.profile-section-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 1.2rem;
+    transition: border-color 0.2s;
+}
+
+.profile-section-card:last-child {
+    margin-bottom: 0;
+}
+
+.profile-section-card:hover {
+    border-color: var(--gold-bdr);
+}
+
+.psc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.psc-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.psc-note {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+}
+
+.psc-badge {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-bdr);
+    padding: 0.22rem 0.65rem;
+    border-radius: 2rem;
+}
+
+.psc-badge-big {
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.08);
+    border-color: rgba(34, 197, 94, 0.25);
+}
+
+.psc-desc {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.psc-trust-hint {
+    margin-top: 0.75rem;
+    font-size: 0.71rem;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--gold-dim);
+    border-radius: var(--r);
+    border: 1px solid var(--gold-bdr);
+}
+
+.psc-trust-hint i {
+    color: var(--gold);
+    font-size: 0.65rem;
+}
+
+.psc-trust-hint strong {
+    color: var(--gold);
+}
+
+.psc-save-btn {
+    margin-top: 1rem;
+}
+
+/* Light mode profile cards */
+[data-theme="light"] .profile-section-card {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .psc-trust-hint {
+    background: rgba(212, 175, 55, 0.06);
+}

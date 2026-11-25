@@ -1,0 +1,165 @@
+/* ============================================
+   admin-buttons.css — Buttons, forms, search, filters
+   ============================================ */
+
+/* Buttons */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: var(--r);
+    font-family: var(--font-h);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+.action-btn.primary {
+    background: var(--gold);
+    color: #000;
+    border-color: var(--gold);
+}
+
+.action-btn.primary:hover {
+    opacity: 0.85;
+}
+
+.action-btn.danger {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error);
+    border-color: rgba(239, 68, 68, 0.25);
+}
+
+.action-btn.danger:hover {
+    background: var(--error);
+    color: #fff;
+    border-color: var(--error);
+}
+
+.action-btn.success {
+    background: rgba(34, 197, 94, 0.1);
+    color: var(--success);
+    border-color: rgba(34, 197, 94, 0.25);
+}
+
+.action-btn.success:hover {
+    background: var(--success);
+    color: #000;
+    border-color: var(--success);
+}
+
+.action-btn.ghost {
+    background: var(--bg-input);
+    color: var(--text-dim);
+    border-color: var(--border);
+}
+
+.action-btn.ghost:hover {
+    color: var(--text);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.action-btn.full-width {
+    width: 100%;
+    justify-content: center;
+    padding: 0.7rem;
+}
+
+.action-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Filter tabs */
+.filter-tabs {
+    display: flex;
+    gap: 0.35rem;
+}
+
+.filter-tab {
+    padding: 0.38rem 0.85rem;
+    border-radius: 2rem;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-tab:hover {
+    color: var(--text);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.filter-tab.active {
+    background: var(--gold-dim);
+    color: var(--gold);
+    border-color: var(--gold-bdr);
+}
+
+/* Search */
+.search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 0.45rem 0.85rem;
+    flex: 1;
+    max-width: 400px;
+    transition: border-color 0.2s;
+}
+
+.search-wrap:focus-within {
+    border-color: var(--gold-bdr);
+}
+
+.search-wrap i {
+    color: var(--text-dim);
+    font-size: 0.78rem;
+}
+
+.search-wrap input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-size: 0.8rem;
+    font-family: var(--font-b);
+    width: 100%;
+}
+
+.search-wrap input::placeholder {
+    color: var(--text-dim);
+}
+
+/* Form elements */
+.form-hint {
+    font-size: 0.73rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+}
+
+.form-msg {
+    font-size: 0.73rem;
+    margin-top: 0.5rem;
+    min-height: 1rem;
+    font-family: var(--font-mono);
+}
+
+.form-msg.success {
+    color: var(--success);
+}
+
+.form-msg.error {
+    color: var(--error);
+}

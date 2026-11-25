@@ -1,0 +1,538 @@
+/* ============================================================
+ * FILMNANCE — user-layout.css
+ * Sidebar, topbar, main content, sections, cards, badges,
+ * trust bar, stat cards, schedule — all layout/component styles.
+ * ============================================================ */
+
+html {
+    width: 100vw;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+body {
+    display: flex;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw;
+    max-width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden !important;
+}
+
+/* ── Sidebar ── */
+.user-sidebar {
+    width: 240px;
+    background: var(--bg-drawer);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 1rem;
+    z-index: 100;
+    overflow-y: auto;
+    box-sizing: border-box;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.user-main {
+    margin-left: 240px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: calc(100% - 240px);
+    max-width: calc(100% - 240px);
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* ── Topbar ── */
+.topbar {
+    position: sticky;
+    top: 0;
+    background: var(--bg-drawer);
+    border-bottom: 1px solid var(--border);
+    padding: 0.55rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 50;
+}
+
+.topbar-left .page-title {
+    font-family: var(--font-h);
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text);
+    display: block;
+}
+
+.topbar-left .page-subtitle {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    display: block;
+    margin-top: 1px;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.topbar-time {
+    font-family: monospace;
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    white-space: nowrap;
+}
+
+.topbar-icon-btn,
+.sidebar-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    color: var(--text-dim);
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.sidebar-toggle:hover {
+    border-color: var(--gold-bdr);
+    color: var(--gold);
+}
+
+.topbar-icon-btn:hover {
+    border-color: var(--gold-bdr);
+    color: var(--gold);
+}
+
+/* ── Brand ── */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.1rem;
+}
+
+.brand-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-bdr);
+    border-radius: var(--r);
+    display: grid;
+    place-items: center;
+    color: var(--gold);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+}
+
+.brand-name {
+    font-family: var(--font-h);
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    display: block;
+}
+
+.brand-role {
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    font-family: monospace;
+    display: block;
+    margin-top: 1px;
+}
+
+/* ── Nav ── */
+.nav-section-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    color: var(--text-dim);
+    font-family: monospace;
+    padding: 0.65rem 0.5rem 0.3rem;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.nav-menu .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 1.1rem;
+    border-radius: var(--r);
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    margin-bottom: 2px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.nav-menu .nav-item:hover {
+    background: var(--bg-input);
+    color: var(--text);
+    padding: 0.65rem 1.1rem;
+}
+
+.nav-menu .nav-item.active {
+    background: var(--gold-dim);
+    color: var(--gold);
+    border-color: var(--gold-bdr);
+    padding: 0.65rem 1.1rem;
+}
+
+/* nav-item-gold: same as regular item, no persistent highlight */
+.nav-menu .nav-item-gold {
+    color: var(--text-dim);
+    background: transparent;
+    border-color: transparent;
+}
+
+.nav-menu .nav-item-gold:hover {
+    background: var(--bg-input);
+    color: var(--text);
+}
+
+.nav-menu .nav-item i {
+    width: 14px;
+    text-align: center;
+    font-size: 0.76rem;
+    flex-shrink: 0;
+}
+
+.nav-menu .nav-item>span:first-of-type {
+    flex: 1;
+    margin-right: 0.3rem;
+}
+
+.nav-menu .nav-item i {
+    margin-right: 0.1rem;
+}
+
+/* ── Sidebar bottom ── */
+.sidebar-top {
+    flex: 1;
+}
+
+.sidebar-bottom {
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+}
+
+.user-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.5rem 0.4rem;
+    border-radius: var(--r);
+    margin-bottom: 0.25rem;
+}
+
+.user-avatar {
+    width: 28px;
+    height: 28px;
+    background: var(--bg-input);
+    border: 1px solid var(--gold-bdr);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 0.7rem;
+    color: var(--gold);
+    flex-shrink: 0;
+}
+
+.user-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.user-name {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--text);
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.user-label {
+    font-size: 0.58rem;
+    color: var(--text-dim);
+    display: block;
+}
+
+.exit-btn {
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+    padding: 0.55rem;
+    border-radius: var(--r);
+    font-family: var(--font-h);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    margin-top: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.exit-btn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: #ef4444;
+}
+
+/* ── Sections ── */
+.dash-section {
+    display: none;
+    padding: 1.75rem 2.5rem;
+}
+
+.dash-section.active-section {
+    display: block;
+}
+
+/* ── Profile page ── */
+.profile-page-wrap {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.profile-view-header {
+    padding: 2rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.profile-avatar-lg {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    border: 3px solid var(--gold-bdr);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--gold);
+    flex-shrink: 0;
+}
+
+.profile-edit-section {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.profile-edit-section:last-child {
+    border-bottom: none;
+}
+
+.pse-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+}
+
+.pse-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pse-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.15rem 0.55rem;
+    background: var(--gold-dim);
+    color: var(--gold);
+    border-radius: 1rem;
+    border: 1px solid var(--gold-bdr);
+}
+
+.pse-body {
+    display: none;
+    margin-top: 0.75rem;
+}
+
+.pse-body.open {
+    display: block;
+}
+
+/* ── Resources section ── */
+.resources-stat {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 1.5rem;
+}
+
+/* ── Security tab active/inactive states ── */
+.sec-tab {
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.sec-tab.active {
+    border: 1px solid var(--gold-bdr) !important;
+    background: var(--gold-dim) !important;
+    color: var(--gold) !important;
+}
+
+.sec-tab:not(.active) {
+    border: 1px solid var(--border) !important;
+    background: var(--bg-input) !important;
+    color: var(--text-dim) !important;
+}
+
+/* ── Profile PIN gate centred card ── */
+#profilePinGate {
+    padding: 2.5rem 2rem;
+    text-align: center;
+    background: var(--bg);
+    border-radius: var(--r-lg);
+    margin: 1.5rem 2rem;
+}
+
+/* ── Profile form body ── */
+#profileFormBody {
+    padding-bottom: 1rem;
+}
+
+/* ── Project assets block ── */
+.project-assets-wrap {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.asset-row {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.asset-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.asset-upload-row {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+.asset-upload-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    cursor: pointer;
+    color: var(--text-dim);
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.asset-upload-btn:hover {
+    border-color: var(--gold-bdr);
+    color: var(--gold);
+}
+
+.asset-filename {
+    font-size: 0.7rem;
+    color: var(--gold);
+    margin-top: 0.25rem;
+    display: none;
+}
+
+/* ── Profile edit area — slides below the view card ── */
+#profileEditArea {
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+/* ── PIN input focus — gold border ── */
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--gold-bdr) !important;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.15);
+}
+
+/* ── Section card wider padding ── */
+.profile-edit-section {
+    padding: 1.5rem 2rem;
+}
+
+/* ── Asset row layout fix ── */
+.asset-upload-row {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    width: 100%;
+}
+
+.asset-upload-row input[type="url"] {
+    flex: 1;
+    min-width: 0;
+}
+
+.asset-filename {
+    font-size: 0.7rem;
+    color: var(--gold);
+    margin-top: 0.3rem;
+    min-height: 1rem;
+    display: block;
+}
+
+/* ── Hide sidebar toggle on desktop (sidebar always visible) ── */
+@media (min-width: 769px) {
+    .sidebar-toggle {
+        display: none;
+    }
+}

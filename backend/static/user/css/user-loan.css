@@ -1,0 +1,486 @@
+/* ============================================
+   user-loan.css — Loan application, purpose chips, calc preview
+   ============================================ */
+
+/* ── Loan Steps ── */
+.loan-steps {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.8rem;
+    border-bottom: 1px solid var(--border);
+    gap: 0;
+}
+
+.loan-step {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lstep-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-family: var(--font-h);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-dim);
+    transition: all 0.3s;
+}
+
+.loan-step.active .lstep-num {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: var(--gold-dim);
+}
+
+.loan-step.done .lstep-num {
+    border-color: var(--success);
+    color: var(--success);
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.lstep-label {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.loan-step-line {
+    flex: 1;
+    height: 2px;
+    background: var(--border);
+    margin: 0 0.8rem;
+}
+
+/* ── Purpose Chips ── */
+.purpose-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 0.6rem;
+}
+
+.purpose-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.purpose-chip:hover {
+    border-color: var(--gold-bdr);
+    color: var(--text);
+}
+
+.purpose-chip.selected {
+    border-color: var(--gold);
+    background: var(--gold-dim);
+    color: var(--gold);
+}
+
+.purpose-chip i {
+    font-size: 0.7rem;
+    color: var(--gold);
+    opacity: 0.7;
+}
+
+/* ── Calc Preview ── */
+.calc-preview {
+    font-size: 0.78rem;
+    color: var(--gold);
+    padding: 0.6rem 0.9rem;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-bdr);
+    border-radius: var(--r);
+    margin-top: 0.5rem;
+    display: none;
+    font-weight: 600;
+}
+
+.calc-preview.visible {
+    display: block;
+}
+
+/* ── PIN Confirm Section ── */
+.pin-confirm-section {
+    background: rgba(212, 175, 55, 0.04);
+    border: 1px solid var(--gold-bdr);
+    border-radius: var(--r-lg);
+    padding: 1.2rem;
+}
+
+/* ── Genre Selector ── */
+.genre-selector {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 0.7rem 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    transition: border-color 0.2s;
+    user-select: none;
+}
+
+.genre-selector:hover {
+    border-color: var(--gold-bdr);
+    color: var(--text);
+}
+
+.genre-dropdown {
+    position: absolute;
+    z-index: 200;
+    background: var(--bg-card);
+    border: 1px solid var(--gold-bdr);
+    border-radius: var(--r);
+    padding: 0.5rem;
+    min-width: 210px;
+    max-height: 260px;
+    overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.1rem;
+    margin-top: 0.2rem;
+}
+
+.genre-cb {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.55rem;
+    border-radius: 0.35rem;
+    cursor: pointer;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    transition: background 0.15s;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.genre-cb:hover {
+    background: var(--gold-dim);
+    color: var(--text);
+}
+
+/* FIX: Custom checkbox — prevents browser sizing and alignment issues */
+.genre-cb input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    min-width: 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    background: var(--bg-input);
+    cursor: pointer;
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.15s;
+}
+
+.genre-cb input[type="checkbox"]:checked {
+    background: var(--gold);
+    border-color: var(--gold);
+}
+
+.genre-cb input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 1px;
+    width: 5px;
+    height: 8px;
+    border: 2px solid #000;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+}
+
+/* ── Asset row with download button ── */
+.asset-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+}
+
+.asset-dl-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-bdr);
+    border-radius: var(--r);
+    color: var(--gold);
+    font-size: 0.8rem;
+    text-decoration: none;
+    transition: background 0.2s;
+    margin-bottom: 0;
+    align-self: flex-end;
+}
+
+.asset-dl-btn:hover {
+    background: rgba(212, 175, 55, 0.22);
+}
+
+/* ── Asset upload toggle button ── */
+.asset-upload-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    align-self: flex-end;
+}
+
+.asset-upload-btn:hover {
+    border-color: var(--gold-bdr);
+    color: var(--gold);
+}
+
+.asset-file-row {
+    display: none;
+    margin-top: 0.4rem;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.asset-file-row.visible {
+    display: flex;
+}
+
+.asset-file-label {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.8rem;
+    background: var(--bg-input);
+    border: 1px dashed var(--gold-bdr);
+    border-radius: var(--r);
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.asset-file-label:hover {
+    background: var(--gold-dim);
+    color: var(--gold);
+}
+
+.asset-file-label i {
+    color: var(--gold);
+    font-size: 0.75rem;
+}
+
+.asset-file-name {
+    font-size: 0.7rem;
+    color: var(--gold);
+    margin-top: 0.25rem;
+    display: none;
+}
+
+[data-theme="light"] .genre-dropdown {
+    background: #ffffff;
+}
+
+[data-theme="light"] .genre-cb {
+    color: #444;
+}
+
+[data-theme="light"] .genre-cb input[type="checkbox"] {
+    background: #fff;
+    border-color: rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="light"] .asset-upload-btn {
+    background: #f0f0f0;
+    border-color: rgba(0, 0, 0, 0.15);
+    color: #555;
+}
+
+/* ═══ PRODUCTION PHASE DROPDOWN ═══ */
+.fld-label-sm {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+}
+
+.phase-dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 0.9rem;
+    background: var(--bg-input);
+    border: 1.5px solid var(--border);
+    border-radius: var(--r);
+    cursor: pointer;
+    font-size: 0.83rem;
+    font-weight: 500;
+    color: var(--text);
+    transition: border-color 0.2s;
+    user-select: none;
+    min-height: 46px;
+}
+
+.phase-dropdown-trigger:hover {
+    border-color: var(--gold-bdr);
+}
+
+.phase-dropdown-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 400;
+    margin-top: 0.3rem;
+    background: var(--bg-card);
+    border: 1.5px solid var(--border);
+    border-radius: var(--r);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+}
+
+.phase-radio-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.15s;
+}
+
+.phase-radio-item:last-child {
+    border-bottom: none;
+}
+
+.phase-radio-item:hover {
+    background: rgba(212, 175, 55, 0.07);
+}
+
+.phase-radio-item.selected {
+    background: rgba(212, 175, 55, 0.1);
+}
+
+.phase-radio-circle {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    margin-top: 0.18rem;
+    transition: all 0.15s;
+}
+
+.phase-radio-circle.selected {
+    border-color: var(--gold);
+    background: var(--gold);
+    box-shadow: inset 0 0 0 3.5px var(--bg-card);
+}
+
+.phase-radio-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.phase-radio-name {
+    font-size: 0.83rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.3;
+}
+
+.phase-radio-desc {
+    font-size: 0.69rem;
+    color: var(--text-dim);
+    line-height: 1.4;
+}
+
+/* ═══ GENRE MULTI-SELECT DROPDOWN ═══ */
+.genre-multi-panel {
+    max-height: 230px;
+    overflow-y: auto;
+}
+
+.genre-multi-panel::-webkit-scrollbar {
+    width: 4px;
+}
+
+.genre-multi-panel::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.genre-dd-item {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--text);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    transition: background 0.12s;
+    user-select: none;
+}
+
+.genre-dd-item:last-child {
+    border-bottom: none;
+}
+
+.genre-dd-item:hover {
+    background: rgba(212, 175, 55, 0.07);
+}
+
+.genre-dd-item input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--gold);
+    cursor: pointer;
+    flex-shrink: 0;
+    pointer-events: none;
+}
+
+/* Step containers need position:relative for absolute dropdowns */
+#loanStep1 {
+    position: relative;
+}
+
+#loanStep2 .fld,
+#loanStep2 .fld-mb1 {
+    position: relative;
+}

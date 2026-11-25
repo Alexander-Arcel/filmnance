@@ -1,0 +1,106 @@
+/* ============================================
+   admin-treasury.css — Treasury section layout
+   ============================================ */
+
+.treasury-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.treasury-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.treasury-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 1.3rem;
+    transition: border-color 0.2s;
+}
+
+.treasury-card:hover {
+    border-color: var(--gold-bdr);
+}
+
+.treasury-card.main-treasury {
+    grid-column: 1 / -1;
+    border-color: var(--gold-bdr);
+}
+
+.tc-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    margin-bottom: 0.4rem;
+}
+
+.tc-value {
+    font-family: var(--font-h);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+}
+
+.tc-value.gold {
+    color: var(--gold);
+}
+
+.tc-value.green {
+    color: var(--success);
+}
+
+.tc-value.orange {
+    color: var(--warn);
+}
+
+.tc-value.red {
+    color: var(--error);
+}
+
+.tc-sub {
+    font-size: 0.68rem;
+    color: var(--text-dim);
+}
+
+.deposit-input-wrap {
+    display: flex;
+    align-items: center;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 0 1rem;
+    margin: 1rem 0;
+    transition: border-color 0.2s;
+}
+
+.deposit-input-wrap:focus-within {
+    border-color: var(--gold-bdr);
+}
+
+.deposit-prefix {
+    font-family: var(--font-h);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-right: 0.4rem;
+}
+
+.deposit-input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-size: 1rem;
+    font-family: var(--font-h);
+    font-weight: 700;
+    padding: 0.75rem 0;
+    width: 100%;
+}

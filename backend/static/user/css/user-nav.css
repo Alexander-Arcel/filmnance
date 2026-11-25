@@ -1,0 +1,91 @@
+/* ============================================
+   user-nav.css — Top navigation bar
+   ============================================ */
+
+.header-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9rem 2rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    backdrop-filter: blur(12px);
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.menu-icon-btn {
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.3rem;
+    transition: opacity 0.2s;
+}
+
+.menu-icon-btn:hover {
+    opacity: 0.7;
+}
+
+.logo {
+    font-family: var(--font-h);
+    font-weight: 800;
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: 0.3em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.theme-btn {
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    color: var(--gold);
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: transform 0.2s, background 0.2s;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-btn:hover {
+    transform: scale(1.1);
+    background: var(--gold-dim);
+}
+
+.user-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    padding: 0.4rem 0.8rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: 2rem;
+}
+
+.user-pill i {
+    color: var(--gold);
+}
