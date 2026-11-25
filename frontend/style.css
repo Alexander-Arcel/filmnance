@@ -3,7 +3,7 @@
    Imports all component CSS files in order
    ============================================= */
 
-@import url('/static/css/base.css');
+@import url('/static/css/base.css?v=2');
 @import url('/static/css/login.css');
 @import url('/static/css/signup.css');
 @import url('/static/css/setup-security.css');

@@ -4,7 +4,7 @@
    ============================================= */
 
 @import url('/static/admin/css/admin-variables.css');
-@import url('/static/admin/css/admin-sidebar.css');
+@import url('/static/admin/css/admin-sidebar.css?v=2');
 @import url('/static/admin/css/admin-layout.css');
 @import url('/static/admin/css/admin-cards.css');
 @import url('/static/admin/css/admin-buttons.css');
